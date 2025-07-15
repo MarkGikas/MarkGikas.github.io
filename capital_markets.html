@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Initial Public Offerings | MCM Partners</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    :root {
+      --primary-blue: #0a2947;
+      --accent-blue: #2563eb;
+      --light-grey: #f8fafc;
+      --medium-grey: #64748b;
+      --dark-grey: #1e293b;
+      --white: #ffffff;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'EB Garamond', serif;
+      background: var(--white);
+      color: var(--dark-grey);
+      line-height: 1.6;
+      padding-top: 80px;
+    }
+    header {
+      background: var(--primary-blue);
+      color: white;
+      padding: 20px 5%;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .logo {
+      text-decoration: none;
+      color: white;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .navbar {
+      display: flex;
+      gap: 40px;
+      font-size: 1rem;
+    }
+
+    .navbar ul a:hover, .navbar ul li a:hover {
+       color: var(--accent-blue); 
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .hero {
+      background-image: linear-gradient(rgba(2, 121, 240, 0.6),rgba(6, 90, 173, 0.6)), url('https://static.vecteezy.com/system/resources/previews/025/500/843/large_2x/financial-chart-on-dark-background-represent-financial-data-analysis-and-analysis-financial-graphs-glowing-lines-and-diagrams-on-digital-screen-ai-generated-free-photo.jpg');
+      background-size: cover;
+      background-position: center;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 0 5%;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 600;
+    }
+    .tagline {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-top: 2px;
+    }
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+    .nav-menu > li {
+      position: relative;
+    }
+    .nav-menu a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 12px;
+      display: block;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      background-color: #ffffff;
+      top: 100%;
+      right: 0;
+      min-width: 180px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      z-index: 999;
+      list-style: none;
+    }
+    .dropdown-menu li a {
+      color: #0a2947;
+      padding: 10px 15px;
+      font-weight: 400;
+    }
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+    .section {
+      padding: 80px 5%;
+      max-width: 1400px;
+      margin: auto;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      color: var(--dark-grey);
+      text-decoration: none;
+    }
+    .card .image {
+      position: relative;
+      width: 100%;
+      padding-bottom: 100%;
+      background-size: cover;
+      background-position: center;
+      border-radius: 0px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .card .image p {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 15px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .card .image:hover p {
+      opacity: 1;
+    }
+    .card h4 {
+      margin-top: 15px;
+      font-size: 1.5rem;
+      color: #000000;
+    }
+
+    /* New styles for enhanced sections */
+    .stats-section {
+      background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+      color: white;
+      padding: 80px 5%;
+      margin: 80px 0;
+    }
+    .stats-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
+    }
+    .stat-item {
+      padding: 20px;
+    }
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .stat-label {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .process-section {
+      background: var(--light-grey);
+      padding: 80px 0;
+    }
+    .process-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 5%;
+    }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
+    }
+    .process-step {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      text-align: center;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+    .process-step:hover {
+      transform: translateY(-5px);
+    }
+    .step-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: white;
+  font-size: 2rem;
+}
+
+    .step-number {
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      width: 35px;
+      height: 35px;
+      background: var(--accent-blue);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .expertise-section {
+      padding: 80px 5%;
+      background: white;
+    }
+    .expertise-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-top: 60px;
+      align-items: center;
+    }
+    .expertise-content h3 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: var(--primary-blue);
+    }
+    .expertise-list {
+      list-style: none;
+      margin-top: 30px;
+    }
+    .expertise-list li {
+      padding: 15px 0;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      font-size: 1.1rem;
+    }
+    .expertise-list li:before {
+      content: '✓';
+      color: var(--accent-blue);
+      font-weight: bold;
+      margin-right: 15px;
+      font-size: 1.2rem;
+    }
+    .expertise-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+    .expertise-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .expertise-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .cta-section {
+      background: var(--dark-grey);
+      color: white;
+      padding: 80px 5%;
+      text-align: center;
+    }
+    .cta-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .cta-button {
+      display: inline-block;
+      background: var(--accent-blue);
+      color: white;
+      padding: 15px 40px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 600;
+      margin-top: 30px;
+      transition: background 0.3s ease;
+    }
+    .cta-button:hover {
+      background: var(--primary-blue);
+    }
+
+    
+    /* Footer styles */
+    footer {
+      background: var(--primary-blue);
+      color: var(--white);
+      padding: 60px 5% 30px;
+      text-align: center;
+    }
+    .footer-content { max-width: 1200px; margin: 0 auto; }
+    .footer-contact {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .contact-item h4 {
+      font-family: 'Canela Light';
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    .footer-nav {
+      text-align: center;
+      margin: 30px 0 10px;
+    }
+    .footer-nav ul {
+      list-style: none;
+      padding: 0;
+      display: inline-flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .footer-nav ul li a {
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+    .footer-nav ul li a:hover { color: var(--accent-blue); }
+
+    /* Animation Styles */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes countUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    @keyframes slideInFromBottom {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Apply animations to elements */
+    .hero {
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero h1 {
+      animation: fadeInUp 1.2s ease-out 0.3s both;
+    }
+
+    .hero p {
+      animation: fadeInUp 1.2s ease-out 0.6s both;
+    }
+
+    .card .image {
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .card:hover .image {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+
+    .stats-section {
+      background: linear-gradient(-45deg, var(--primary-blue), var(--accent-blue), #1e40af, var(--primary-blue));
+      background-size: 400% 400%;
+      animation: gradientShift 8s ease infinite;
+    }
+
+    .stat-item {
+      animation: slideInFromBottom 0.8s ease-out both;
+    }
+
+
+    .stat-item:nth-child(4) {
+      animation-delay: 0.8s;
+    }
+
+    .stat-number {
+      transition: transform 0.3s ease;
+    }
+
+    .stat-item:hover .stat-number {
+      transform: scale(1.1);
+      color: #fbbf24;
+    }
+
+    .process-step {
+      animation: fadeInUp 0.8s ease-out both;
+    }
+
+    .process-step:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .process-step:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .process-step:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .process-step:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    .step-icon {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .process-step:hover .step-icon {
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+    }
+
+    .process-step:hover .step-icon i {
+      animation-play-state: running;
+    }
+
+    .expertise-content {
+      animation: fadeInLeft 1s ease-out both;
+    }
+
+    .expertise-image {
+      animation: fadeInRight 1s ease-out both;
+    }
+
+    .expertise-list li {
+      opacity: 0;
+      animation: fadeInLeft 0.6s ease-out both;
+    }
+
+    .expertise-list li:nth-child(1) { animation-delay: 0.1s; }
+    .expertise-list li:nth-child(2) { animation-delay: 0.2s; }
+    .expertise-list li:nth-child(3) { animation-delay: 0.3s; }
+    .expertise-list li:nth-child(4) { animation-delay: 0.4s; }
+    .expertise-list li:nth-child(5) { animation-delay: 0.5s; }
+    .expertise-list li:nth-child(6) { animation-delay: 0.6s; }
+
+    .expertise-list li:before {
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .expertise-list li:hover:before {
+      transform: scale(1.3);
+      color: #10b981;
+    }
+
+    .cta-section {
+      animation: fadeInUp 1s ease-out both;
+    }
+
+    .cta-button {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .cta-button:hover:before {
+      left: 100%;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+    }
+
+    /* Floating animation for icons */
+
+
+    .process-step:nth-child(1) .step-icon {
+      animation-delay: 0s;
+    }
+
+    .process-step:nth-child(2) .step-icon {
+      animation-delay: 0.5s;
+    }
+
+    .process-step:nth-child(3) .step-icon {
+      animation-delay: 1s;
+    }
+
+    .process-step:nth-child(4) .step-icon {
+      animation-delay: 1.5s;
+    }
+
+    /* Scroll-triggered animations */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .animate-on-scroll.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .expertise-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .stat-number {
+        font-size: 2.5rem;
+      }
+      
+      /* Reduce animation intensity on mobile */
+      .card:hover .image {
+        transform: translateY(-5px);
+      }
+      
+      .process-step:hover {
+        transform: translateY(-2px);
+      }
+      
+      .step-icon {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+        <div>
+            <a href="index.html" class="logo">MCM Partners</a>
+            <div class="tagline">Licensed • 25+ Years • Performance-Driven</div>
+          </div>          
+    <nav class="navbar">
+        <ul class="nav-menu">
+          <li class="dropdown">
+            <a href="capital_markets.html">Capital Markets</a>
+            <ul class="dropdown-menu">
+              <li><a href="private_placements.html">Private Placements</a></li>
+              <li><a href="ipos.html">Initial Public Offerings</a></li>
+              <li><a href="secondaries.html">Secondaries</a></li>
+              <li><a href="block_trades.html">Block Trades</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="asset_management.html">Asset Management</a>
+            <ul class="dropdown-menu">
+              <li><a href="ccf.html">Commodity Credit Fund</a></li>
+              <li><a href="exclusive_funds.html">Exclusive Funds</a></li>
+            </ul>
+          </li>
+          <a href="wealth.html">Wealth</a>
+          <a href="about.html">About</a>
+          <a href="contact_us.html">Contact Us</a>
+        </ul>
+      </nav>
+     </div>
+      
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Capital Markets</h1>
+      <p>Our Capital Markets division delivers superior execution across IPOs, secondaries, private placements, and block trades through deep institutional relationships</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Our Services</h2>
+    <div class="cards">
+      <a href="ipos.html" class="card">
+        <div class="image" style="background-image: url('https://cdn.i-scmp.com/sites/default/files/styles/1020x680/public/d8/images/canvas/2025/05/20/fa28fb6b-0183-48ec-b564-ce79c3bd8f80_f3c4c75d.jpg?itok=DV25l5pQ&v=1747708447');">
+          <p>Preferential access to oversubscribed initial public offerings for eligible investors through strong underwriter relationships.</p>
+        </div>
+        <h4>IPOs</h4>
+      </a>
+      <a href="secondaries.html" class="card">
+        <div class="image" style="background-image: url('https://www.barings.com/globalassets/2-assets/perspectives/viewpoints/insights/2024/10-october/surge-of-secondaries-hero.jpg');">
+          <p>Discret execution of secondary transactions, enabling liquidity for private and public assets with institutional efficiency.</p>
+        </div>
+        <h4>Secondaries</h4>
+      </a>
+      <a href="private-placements.html" class="card">
+        <div class="image" style="background-image: url('https://thumbs.dreamstime.com/b/glowing-forex-chart-city-background-night-candlestick-line-finance-trade-invest-concept-double-exposure-143537882.jpg');">
+          <p>Customized capital raising solutions for companies through targeted placement to our global investor network.</p>
+        </div>
+        <h4>Private Placements</h4>
+      </a>
+      <a href="exclusive_funds.html" class="card">
+        <div class="image" style="background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20250123/pngtree-law-and-order-scene-with-gavel-legal-paperwork-for-judicial-themes-image_16878225.jpg');">
+          <p>Strategic execution of high-value transactions through exclusive, long-term advisory relationships.</p>
+        </div>
+        <h4>Retained Mandates</h4>
+      </a>
+    </div>
+  </section>
+
+  <!-- New Enhanced Sections -->
+  <section class="stats-section">
+    <div class="stats-container">
+      <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Proven Track Record</h2>
+      <p style="font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto;">Over two decades of excellence in capital markets execution</p>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number">$12B+</span>
+          <span class="stat-label">Capital Raised</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">500+</span>
+          <span class="stat-label">Transactions Completed</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">25+</span>
+          <span class="stat-label">Years of Experience</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">98%</span>
+          <span class="stat-label">Client Satisfaction</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="process-section">
+    <div class="process-container">
+      <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 20px; color: var(--primary-blue);">Our Process</h2>
+      <p style="text-align: center; font-size: 1.2rem; color: var(--medium-grey); max-width: 600px; margin: 0 auto;">A streamlined approach to capital markets execution</p>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <div class="step-icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <h3>Analysis & Strategy</h3>
+          <p>Comprehensive market analysis and strategic planning tailored to your specific objectives and market conditions.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <div class="step-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>Institutional Outreach</h3>
+          <p>Leveraging our extensive network of institutional investors and strategic relationships for optimal positioning.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <div class="step-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Execution</h3>
+          <p>Precise execution with real-time market intelligence and continuous optimization throughout the transaction.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <div class="step-icon">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <h3>Post-Transaction</h3>
+          <p>Ongoing support and relationship management to ensure continued success and future opportunities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="expertise-section">
+    <div class="expertise-container">
+      <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 20px; color: var(--primary-blue);">Market Expertise</h2>
+      <p style="text-align: center; font-size: 1.2rem; color: var(--medium-grey); max-width: 600px; margin: 0 auto;">Deep sector knowledge across global markets</p>
+      <div class="expertise-grid">
+        <div class="expertise-content">
+          <h3>Sector Specialization</h3>
+          <p>Our team brings specialized knowledge across key industry verticals, enabling us to provide targeted insights and optimal execution strategies for each sector's unique characteristics.</p>
+          <ul class="expertise-list">
+            <li>Technology & Innovation</li>
+            <li>Healthcare & Biotechnology</li>
+            <li>Financial Services</li>
+            <li>Energy & Resources</li>
+            <li>Real Estate & Infrastructure</li>
+            <li>Consumer & Retail</li>
+          </ul>
+        </div>
+        <div class="expertise-image">
+          <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Financial expertise" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-container">
+      <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Ready to Access Capital Markets?</h2>
+      <p style="font-size: 1.2rem; opacity: 0.9;">Connect with our capital markets team to discuss your transaction objectives and explore opportunities in today's dynamic markets.</p>
+      <a href="contact_us.html" class="cta-button">Schedule a Consultation</a>
+    </div>
+  </section>
+
+  
+  <footer>
+    <div class="footer-content">
+      <div class="footer-contact">
+        <div class="contact-item">
+          <h4>Address</h4>
+          <p>Henley Building, Suite 701, 7/F,</p>
+          <p>5 Queen's Road Central, Central<br />Hong Kong SAR</p>
+        </div>
+        <div class="contact-item">
+          <h4>Email</h4>
+          <p>info@mcmpartners.com</p>
+        </div>
+        <div class="contact-item">
+          <h4>Phone</h4>
+          <p>+852 2210 0888</p>
+        </div>
+      </div>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="capital-markets.html">Capital Markets</a></li>
+          <li><a href="private-credit.html">Private Credit</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-bottom">&copy; 2025 MCM Partners. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll-triggered animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        }
+      });
+    }, observerOptions);
+
+    // Observe sections for scroll animations
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('.section, .stats-section, .process-section, .expertise-section');
+      sections.forEach(section => {
+        section.classList.add('animate-on-scroll');
+        observer.observe(section);
+      });
+
+      // Animate numbers counting up
+      const statNumbers = document.querySelectorAll('.stat-number');
+      const animateNumbers = (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const target = entry.target;
+            const text = target.textContent;
+            const isPercentage = text.includes('%');
+            const isCurrency = text.includes(&apos);
+            const isPlus = text.includes('+');
+            
+            let finalNumber = parseInt(text.replace(/[^\d]/g, ''));
+            if (isCurrency) finalNumber = finalNumber; // Keep as is for billions
+            
+            let current = 0;
+            const increment = finalNumber / 50;
+            const timer = setInterval(() => {
+              current += increment;
+              if (current >= finalNumber) {
+                current = finalNumber;
+                clearInterval(timer);
+              }
+              
+              let displayText = Math.floor(current).toString();
+              if (isCurrency) displayText = ' + displayText + 'B';
+              if (isPlus) displayText += '+';
+              if (isPercentage) displayText += '%';
+              
+              target.textContent = displayText;
+            }, 30);
+          }
+        });
+      };
+
+      const numberObserver = new IntersectionObserver(animateNumbers, observerOptions);
+      statNumbers.forEach(number => {
+        numberObserver.observe(number);
+      });
+
+      // Add staggered animation to cards
+      const cards = document.querySelectorAll('.card');
+      cards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+      });
+
+
+      // Add hover effects to navigation
+      const navLinks = document.querySelectorAll('.nav-menu a');
+      navLinks.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+          link.style.transform = 'translateY(-2px)';
+          link.style.transition = 'transform 0.3s ease';
+        });
+        
+        link.addEventListener('mouseleave', () => {
+          link.style.transform = 'translateY(0)';
+        });
+      });
+
+      // Add parallax effect to hero section
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero');
+        if (hero) {
+          hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+      });
+
+      // Add smooth reveal animation for expertise list items
+      const expertiseItems = document.querySelectorAll('.expertise-list li');
+      const revealItems = (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateX(0)';
+          }
+        });
+      };
+
+      const itemObserver = new IntersectionObserver(revealItems, {
+        threshold: 0.5,
+        rootMargin: '0px 0px -20px 0px'
+      });
+
+      expertiseItems.forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateX(-20px)';
+        item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        itemObserver.observe(item);
+      });
+    });
+
+    // Add loading animation
+    window.addEventListener('load', () => {
+      document.body.style.opacity = '0';
+      document.body.style.transition = 'opacity 0.5s ease';
+      setTimeout(() => {
+        document.body.style.opacity = '1';
+      }, 100);
+    });
+  </script>
+</body>
+</html>

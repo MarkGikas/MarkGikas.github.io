@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Funds | MCM Partners</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-blue: #0a2947;
+      --accent-blue: #2563eb;
+      --light-grey: #f8fafc;
+      --white: #ffffff;
+      --dark-grey: #1e293b;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'EB Garamond', serif;
+      background-color: var(--light-grey);
+      color: var(--primary-blue);
+      line-height: 1.6;
+      padding-top: 80px;
+    }
+    header {
+      background: var(--primary-blue);
+      color: var(--primary-blue);
+      padding: 20px 5%;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .logo {
+      text-decoration: none;
+      color: white;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .tagline {
+      font-family: 'Canela Light';
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-top: 2px;
+    }
+    .navbar {
+      background-color: #0a2947;
+      padding: 12px 5%;
+      font-family: 'Canela Light';
+      float: right;
+    }
+
+    .navbar ul a:hover, .navbar ul li a:hover {
+       color: var(--accent-blue); 
+    }
+    
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+    }
+    .nav-menu > li { position: relative; }
+    .nav-menu a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 12px;
+      display: block;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      background-color: #ffffff;
+      top: 100%;
+      right: 0;
+      min-width: 180px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      z-index: 999;
+      list-style: none;
+    }
+    .dropdown-menu li a {
+      color: #0a2947;
+      padding: 10px 15px;
+      font-weight: 400;
+    }
+    .dropdown:hover .dropdown-menu { display: block; }
+    .hero {
+      background-image: linear-gradient(rgba(9, 27, 224, 0.579),rgba(96, 87, 201, 0.41)),
+        url('https://moneytalkwitht.com/wp-content/uploads/2023/10/AdobeStock_159096272-1024x634.jpeg');
+      background-size: cover;
+      background-position: center;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 0 5%;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+    }
+    .hero h1 { font-size: 3rem; font-weight: 600; }
+    
+    /* New fund sections container */
+    .funds-section {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      padding: 0 5%;
+    }
+    .funds-title {
+      font-size: 2.5rem;
+      color: var(--primary-blue);
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    /* Each fund section */
+    .fund-section {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      margin-bottom: 60px;
+      margin-top: 60px;
+      overflow: hidden;
+      display: flex;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fund-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fund-image {
+      flex: 1 1 350px;
+      max-width: 450px;
+      height: 250px;
+      object-fit: cover;
+      border-right: 1px solid #e2e8f0;
+    }
+    .fund-info {
+      flex: 1 1 400px;
+      padding: 24px 32px;
+      color: var(--primary-blue);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .fund-info h3 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+    .fund-info p {
+      font-size: 1.1rem;
+      color: var(--dark-grey);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .fund-details {
+      font-size: 1rem;
+      color: var(--accent-blue);
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .fund-details strong {
+      color: var(--primary-blue);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .fund-section {
+        flex-direction: column;
+      }
+      .fund-image {
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+        max-width: 100%;
+        height: 220px;
+      }
+      .fund-info {
+        padding: 20px;
+      }
+    }
+
+    /* Fund Management Info Section */
+    .fund-management-info {
+      background: var(--white);
+      padding: 80px 5%;
+      max-width: 1200px;
+      margin: 60px auto;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+    .info-container {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+    .info-container img {
+      flex: 1 1 400px;
+      max-width: 450px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      object-fit: cover;
+    }
+    .info-text {
+      flex: 1 1 500px;
+      color: var(--primary-blue);
+    }
+    .info-text h2 {
+      font-size: 2.8rem;
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+    .info-text p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--dark-grey);
+      margin-bottom: 16px;
+    }
+    @media (max-width: 900px) {
+      .fund-management-info .info-container {
+        flex-direction: column;
+      }
+      .info-container img, .info-text {
+        max-width: 100%;
+      }
+    }
+
+    /* Footer styles */
+    footer {
+      background: var(--primary-blue);
+      color: var(--white);
+      padding: 60px 5% 30px;
+      text-align: center;
+    }
+    .footer-content { max-width: 1200px; margin: 0 auto; }
+    .footer-contact {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .contact-item h4 {
+      font-family: 'Canela Light';
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    .footer-nav {
+      text-align: center;
+      margin: 30px 0 10px;
+    }
+    .footer-nav ul {
+      list-style: none;
+      padding: 0;
+      display: inline-flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .footer-nav ul li a {
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+    .footer-nav ul li a:hover { color: var(--accent-blue); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+        <div>
+            <a href="index.html" class="logo">MCM Partners</a>
+            <div class="tagline">Licensed • 25+ Years • Performance-Driven</div>
+          </div>          
+    <nav class="navbar">
+        <ul class="nav-menu">
+          <li class="dropdown">
+            <a href="capital_markets.html">Capital Markets</a>
+            <ul class="dropdown-menu">
+              <li><a href="private_placements.html">Private Placements</a></li>
+              <li><a href="ipos.html">Initial Public Offerings</a></li>
+              <li><a href="secondaries.html">Secondaries</a></li>
+              <li><a href="block_trades.html">Block Trades</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="asset_management.html">Asset Management</a>
+            <ul class="dropdown-menu">
+              <li><a href="ccf.html">Commodity Credit Fund</a></li>
+              <li><a href="exclusive_funds.html">Exclusive Funds</a></li>
+            </ul>
+          </li>
+          <a href="wealth.html">Wealth</a>
+          <a href="about.html">About</a>
+          <a href="contact_us.html">Contact Us</a>
+        </ul>
+      </nav>
+     </div>
+      
+  </header>
+
+
+  <section class="hero">
+    <div>
+      <h1>Our Funds</h1>
+      <p>Explore our exclusive investment funds, each designed to deliver value, diversification, and performance for our clients.</p>
+    </div>
+  </section>
+
+  <section class="funds-section" aria-label="Featured Funds">
+
+    <section class="fund-section">
+      <img class="fund-image" src="https://live.staticflickr.com/5647/22307565878_0e3e4fb765_b.jpg" alt="Commodity Credit Fund" />
+      <div class="fund-info">
+        <h3>Commodity Credit Fund (CCF)</h3>
+        <p>Secured lending solutions to commodity supply chain participants, targeting stable yield and capital preservation.</p>
+        <div class="fund-details" aria-label="Fund details">
+          <strong>Type:</strong> Private Credit<br>
+          <strong>Risk Level:</strong> Moderate<br>
+          <strong>Eligibility:</strong> Professional Investors
+        </div>
+      </div>
+    </section>
+
+    <section class="fund-section">
+      <img class="fund-image" src="https://a.storyblok.com/f/182663/2688x1512/5d8ce12f4b/rentec-renaissance-technologies-and-the-medallion-fund.png/m/3840x0/filters:quality(100)" alt="Renaissance Technologies Fund" />
+      <div class="fund-info">
+        <h3>Renaissance Technologies</h3>
+        <p>Access to cutting-edge quantitative strategies employed by one of the most successful hedge funds in history.</p>
+        <div class="fund-details" aria-label="Fund details">
+          <strong>Type:</strong> Alternative Investments<br>
+          <strong>Risk Level:</strong> Medium-High<br>
+          <strong>Eligibility:</strong> Qualified Investors
+        </div>
+      </div>
+    </section>
+
+    <section class="fund-section">
+      <img class="fund-image" src="https://framerusercontent.com/assets/HjPhCJ3EUjsL3o7PabEGtIM7Uw.png" alt="Arrowpoint Investment Partners" />
+      <div class="fund-info">
+        <h3>Arrowpoint Investment Partners</h3>
+        <p>A multi-strategy headge fund platform with a focus on Asian Markets with experienced regional specialists across investment and infrasturcture teams.</p>
+        <div class="fund-details" aria-label="Fund details">
+          <strong>Type:</strong> Multi-Asset<br>
+          <strong>Risk Level:</strong> Balanced<br>
+          <strong>Eligibility:</strong> Accredited Investors
+        </div>
+      </div>
+    </section>
+
+    <section class="fund-section">
+        <img class="fund-image" src="https://a.storyblok.com/f/161338/1200x630/d0ebb7ef4f/homepage.png" alt="Stableton" />
+        <div class="fund-info">
+          <h3>Stableton</h3>
+          <p> Institutional access to private tech and pre-IPO investments via portfolios and co-investments, backed by 130+ deals and 100+ financial partners.</p>
+          <div class="fund-details" aria-label="Fund details">
+            <strong>Type:</strong> Private / Pre-IPO <br>
+            <strong>Risk Level:</strong> Balanced<br>
+            <strong>Eligibility:</strong> Accredited Investors
+          </div>
+        </div>
+      </section>
+
+  </section>
+
+  <section class="fund-management-info">
+    <div class="info-container">
+      <img src="photos/mcm-green.webp" alt="MCM Partners Fund Management Team" />
+      <div class="info-text">
+        <h2>About MCM Partners Fund Management</h2>
+        <p>
+          With over 25 years of expertise, MCM Partners Fund Management specializes in delivering tailored investment solutions that balance risk and growth.
+          Our team leverages deep market insights and global connections to identify unique opportunities across asset classes.
+        </p>
+        <p>
+          We prioritize transparency, disciplined risk management, and alignment with investor goals to build lasting value.
+          Our funds are designed to offer diversification, liquidity, and access to exclusive private market investments.
+        </p>
+        <p>
+          Partner with us to benefit from a comprehensive approach that integrates capital markets expertise, private credit strategies, and wealth management services.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-contact">
+        <div class="contact-item">
+          <h4>Address</h4>
+          <p>Henley Building, Suite 701, 7/F,</p>
+          <p>5 Queen's Road Central, Central<br />Hong Kong SAR</p>
+        </div>
+        <div class="contact-item">
+          <h4>Email</h4>
+          <p>info@mcmpartners.com</p>
+        </div>
+        <div class="contact-item">
+          <h4>Phone</h4>
+          <p>+852 2210 0888</p>
+        </div>
+      </div>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="capital-markets.html">Capital Markets</a></li>
+          <li><a href="private-credit.html">Private Credit</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-bottom">&copy; 2025 MCM Partners. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Intersection Observer to add 'visible' class when fund-section enters viewport
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('.fund-section');
+
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // Animate once only
+          }
+        });
+      }, observerOptions);
+
+      sections.forEach(section => {
+        observer.observe(section);
+      });
+    });
+  </script>
+</body>
+</html>

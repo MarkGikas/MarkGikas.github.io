@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retained Mandates | MCM Partners</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    :root {
+      --primary-blue: #0a2947;
+      --accent-blue: #2563eb;
+      --light-grey: #f8fafc;
+      --medium-grey: #64748b;
+      --dark-grey: #1e293b;
+      --white: #ffffff;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'EB Garamond', serif;
+      background: var(--white);
+      color: var(--dark-grey);
+      line-height: 1.6;
+      padding-top: 80px;
+    }
+    header {
+      background: var(--primary-blue);
+      color: white;
+      padding: 20px 5%;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .logo {
+  text-decoration: none;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+    .navbar {
+      display: flex;
+      gap: 40px;
+      font-size: 1rem;
+    }
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hero {
+      background-image: linear-gradient(rgba(6, 2, 240, 0.6),rgba(6, 90, 173, 0.6)),
+        url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+      background-size: cover;
+      background-position: center;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 0 5%;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 600;
+    }
+    .tagline {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.navbar {
+  background-color: transparent;
+  font-family: 'EB Garamond', serif;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.nav-menu > li {
+  position: relative;
+}
+
+.nav-menu a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  display: block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  top: 100%;
+  right: 0;
+  min-width: 180px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  z-index: 999;
+  list-style: none;
+}
+
+.dropdown-menu li a {
+  color: #0a2947;
+  padding: 10px 15px;
+  font-weight: 400;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+
+    .section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 80px 5%;
+    }
+    .section h2 {
+      font-size: 2.6rem;
+      color: var(--primary-blue);
+      margin-bottom: 30px;
+    }
+    .section p {
+      font-size: 1.1rem;
+      color: #334155;
+      margin-bottom: 20px;
+    }
+
+    .highlights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .highlight-box {
+      background: var(--light-grey);
+      padding: 30px;
+      border-left: 4px solid var(--accent-blue);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+    .highlight-box h3 {
+      font-size: 1.3rem;
+      color: var(--primary-blue);
+      margin-bottom: 10px;
+    }
+    .highlight-box p {
+      color: #475569;
+      font-size: 1rem;
+    }
+
+        
+
+    /* Footer */
+    footer { background: var(--primary-blue); color: var(--white); padding:60px 5% 30px; text-align:center; }
+    .footer-content { max-width:1200px; margin:0 auto; }
+    .footer-contact { display:flex; justify-content:center; gap:60px; flex-wrap:wrap; margin-bottom:40px; }
+    .contact-item h4 {
+        font-family: 'Canela Light'; /* Garamond for contact titles */
+        font-size:1.1rem;
+        margin-bottom:10px;
+    }
+
+    .footer-nav {
+  text-align: center;
+  margin: 30px 0 10px;
+}
+
+.footer-nav ul {
+  list-style: none;
+  padding: 0;
+  display: inline-flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.footer-nav ul li a {
+  text-decoration: none;
+  color: #ffffff; /* Adjust if footer has a different background */
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.footer-nav ul li a:hover {
+  color: var(--accent-blue); /* or any highlight color you’re using */
+}
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+        <div>
+            <a href="index.html" class="logo">MCM Partners</a>
+            <div class="tagline">Licensed • 25+ Years • Performance-Driven</div>
+          </div>          
+    <nav class="navbar">
+        <ul class="nav-menu">
+          <li class="dropdown">
+            <a href="capital_markets.html">Capital Markets</a>
+            <ul class="dropdown-menu">
+              <li><a href="private_placements.html">Private Placements</a></li>
+              <li><a href="ipos.html">Initial Public Offerings</a></li>
+              <li><a href="secondaries.html">Secondaries</a></li>
+              <li><a href="block_trades.html">Block Trades</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="asset_management.html">Asset Management</a>
+            <ul class="dropdown-menu">
+              <li><a href="ccf.html">Commodity Credit Fund</a></li>
+              <li><a href="exclusive_funds.html">Exclusive Funds</a></li>
+            </ul>
+          </li>
+          <a href="wealth.html">Wealth</a>
+          <a href="about.html">About</a>
+          <a href="contact_us.html">Contact Us</a>
+        </ul>
+      </nav>
+     </div>
+
+  </header>
+      
+
+  <section class="hero">
+    <div>
+      <h1>Retained Mandates</h1>
+      <p>Dedicated advisory. Exclusive relationships. Long-term capital solutions.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Strategic Advisory for Complex Capital Needs</h2>
+    <p>MCM Partners provides exclusive, retained advisory services to select clients requiring sophisticated capital solutions and ongoing strategic guidance. Our retained mandate relationships are built on deep trust, aligned incentives, and a commitment to long-term value creation.</p>
+    <p>Whether you're a family office requiring bespoke investment solutions or an institution navigating complex capital events, our retained advisory services deliver continuity, discretion, and institutional-grade execution.</p>
+
+    <div class="highlights">
+      <div class="highlight-box">
+        <h3>Exclusive Advisory</h3>
+        <p>Dedicated senior-level attention for your most critical capital decisions and transactions.</p>
+      </div>
+      <div class="highlight-box">
+        <h3>Family Office Services</h3>
+        <p>Comprehensive solutions for ultra-high-net-worth families including generational planning.</p>
+      </div>
+      <div class="highlight-box">
+        <h3>Special Situations</h3>
+        <p>Expert guidance through complex capital events, restructurings, and liquidity solutions.</p>
+      </div>
+      <div class="highlight-box">
+        <h3>Long-Term Mandates</h3>
+        <p>Multi-year engagements with performance-based compensation structures.</p>
+      </div>
+    </div>
+  </section>
+
+ 
+  <footer>
+    <div class="footer-content">
+      <div class="footer-contact">
+        <div class="contact-item">
+          <h4>Address</h4>
+          <p>Henley Building, Suite 701, 7/F,</p>
+          <p>5 Queen's Road Central, Central<br />Hong Kong SAR</p>
+        </div>
+        <div class="contact-item">
+          <h4>Email</h4>
+          <p>info@mcmpartners.com</p>
+        </div>
+        <div class="contact-item">
+          <h4>Phone</h4>
+          <p>+852 2210 0888</p>
+        </div>
+      </div>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="capital-markets.html">Capital Markets</a></li>
+          <li><a href="private-credit.html">Private Credit</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-bottom">&copy; 2025 MCM Partners. All rights reserved.</div>
+    </div>
+  </footer>
+
+</body>
+</html>

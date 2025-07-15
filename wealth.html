@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wealth| MCM Partners</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-blue: #0a2947;
+      --accent-blue: #2563eb;
+      --light-grey: #f8fafc;
+      --white: #ffffff;
+      --dark-grey: #1e293b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'EB Garamond', serif;
+      background-color: var(--light-grey);
+      color: var(--primary-blue);
+      line-height: 1.6;
+      padding-top: 80px;
+    }
+
+    header {
+      background: var(--primary-blue);
+      color: var(--primary-blue);
+      padding: 20px 5%;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      text-decoration: none;
+      color: white;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .tagline {
+      font-family: 'Canela Light';
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-top: 2px;
+    }
+
+    .navbar {
+      background-color: #0a2947;
+      padding: 12px 5%;
+      font-family: 'Canela Light';
+      float: right;
+    }
+
+    .navbar ul a:hover, .navbar ul li a:hover {
+       color: var(--accent-blue); 
+    }
+
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+    }
+
+    .nav-menu > li {
+      position: relative;
+    }
+
+    .nav-menu a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 12px;
+      display: block;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      background-color: #ffffff;
+      top: 100%;
+      right: 0;
+      min-width: 180px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      z-index: 999;
+      list-style: none;
+    }
+
+    .dropdown-menu li a {
+      color: #0a2947;
+      padding: 10px 15px;
+      font-weight: 400;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .hero {
+      background-image: linear-gradient(rgba(9, 27, 224, 0.579),rgba(96, 87, 201, 0.41)),
+        url('https://images.unsplash.com/photo-1553729459-efe14ef6055d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+      background-size: cover;
+      background-position: center;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 0 5%;
+
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 600;
+    }
+
+    .list_view
+{
+display:flex;
+align-items:center;
+}
+.list_view h2
+{
+padding:10px;
+}
+
+
+    /* ======= Slideshow Section ======= */
+    .wealth-slider-section {
+      background: var(--white);
+      padding: 20px 5% 20px; /* bottom padding reduced for dots */
+      text-align: center;
+      overflow: visible; /* allow dots outside */
+    }
+
+    .slider-title {
+      font-size: 3.4rem;
+      color: var(--primary-blue);
+      margin-bottom: 20px;
+    }
+
+    .slider-container {
+      position: relative;
+      width: 1300px;       /* increased width */
+      height: 500px;       /* increased height */
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+
+      /* Blue gradient background */
+      background: var(--white)
+    }
+
+    .slider-track {
+      display: flex;
+      transition: transform 1.5s ease-in-out;
+      height: 100%;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      padding: 20px;
+      text-align: center;
+      overflow: hidden;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: var(--white)
+    }
+
+    .slide h3 {
+      color: var(--primary-blue);
+      font-size: 2.8rem;
+    }
+
+    .wealth-subtitle {
+      color: var(--primary-blue); /* lighter subtitle */
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .slide img {
+      max-width: 900px;
+      max-height: 300px;
+      margin: 20px auto 0;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      object-fit: contain;
+    }
+
+    /* Navigation dots container moved outside slider-container */
+    .slider-nav {
+      margin: 20px auto 0;
+      width: 1100px; /* same width as slider-container */
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      user-select: none;
+      cursor: pointer;
+      /* no absolute positioning since outside container */
+    }
+
+    .slider-nav button {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: none;
+      background-color: #94a3b8; /* greyish */
+      transition: background-color 0.3s ease;
+    }
+
+    .slider-nav button.active {
+      background-color: #2563eb; /* accent blue */
+    }
+
+
+    .alternating-containers-section .container {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.alternating-containers-section .container.reverse {
+  flex-direction: row-reverse;
+}
+
+.alternating-containers-section .image-wrapper {
+  flex: 1;
+}
+
+.alternating-containers-section .image-wrapper img {
+  max-width: 500px;
+  max-height: 250px;
+  border-radius: 0px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+
+.alternating-containers-section .text-wrapper {
+  flex: 1;
+  color: var(--primary-blue);
+}
+
+.alternating-containers-section .text-wrapper h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.alternating-containers-section .text-wrapper p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--dark-grey);
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+  .alternating-containers-section .container,
+  .alternating-containers-section .container.reverse {
+    flex-direction: column;
+  }
+
+  .alternating-containers-section .image-wrapper,
+  .alternating-containers-section .text-wrapper {
+    width: 100%;
+  }
+
+  .alternating-containers-section .image-wrapper img {
+    max-height: 300px;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero > div {
+  animation: fadeIn 1.5s ease forwards;
+}
+
+.slide {
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.alternating-containers-section .container {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.alternating-containers-section .container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+    /* ======= Firm Overview Section ======= */
+    .firm-overview-image-section {
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 100px 10%;
+      background: var(--white);
+      opacity: 0;
+   transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
+    }
+    .firm-overview-image-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+    .firm-overview-image-section img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* ======= Footer ======= */
+    footer {
+      background: var(--primary-blue);
+      color: var(--white);
+      padding: 60px 5% 30px;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-contact {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .contact-item h4 {
+      font-family: 'Canela Light';
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .footer-nav {
+      text-align: center;
+      margin: 30px 0 10px;
+    }
+
+    .footer-nav ul {
+      list-style: none;
+      padding: 0;
+      display: inline-flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .footer-nav ul li a {
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-nav ul li a:hover {
+      color: var(--accent-blue);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+        <div>
+            <a href="index.html" class="logo">MCM Partners</a>
+            <div class="tagline">Licensed • 25+ Years • Performance-Driven</div>
+          </div>          
+    <nav class="navbar">
+        <ul class="nav-menu">
+          <li class="dropdown">
+            <a href="capital_markets.html">Capital Markets</a>
+            <ul class="dropdown-menu">
+              <li><a href="private_placements.html">Private Placements</a></li>
+              <li><a href="ipos.html">Initial Public Offerings</a></li>
+              <li><a href="secondaries.html">Secondaries</a></li>
+              <li><a href="block_trades.html">Block Trades</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="asset_management.html">Asset Management</a>
+            <ul class="dropdown-menu">
+              <li><a href="ccf.html">Commodity Credit Fund</a></li>
+              <li><a href="exclusive_funds.html">Exclusive Funds</a></li>
+            </ul>
+          </li>
+          <a href="wealth.html">Wealth</a>
+          <a href="about.html">About</a>
+          <a href="contact_us.html">Contact Us</a>
+        </ul>
+      </nav>
+     </div>
+  </header>
+
+
+  <section class="hero">
+    <div>
+      <h1>Wealth Management</h1>
+      <p>We aim to achieve wealth preservation and maintain stable long-term growth based on the client's risk profile.</p>
+    </div>
+  </section>
+
+
+
+  <section class="wealth-slider-section">
+    <div class="slider-container">
+      <div class="slider-track">
+        <div class="slide">
+          <h3>Wealth Advisory & Planning</h3>
+          <p class="wealth-subtitle">Strategic guidance to build, preserve, and transition wealth across generations.</p>
+          <img src="photos/wm1.png" alt="Wealth Advisory" />
+        </div>
+        <div class="slide">
+          <h3>Investment Solutions</h3>
+          <p class="wealth-subtitle">Customized portfolios designed to align with your goals, risk tolerance, and market opportunities.</p>
+          <img src="photos/investment-solutions.png" alt="Investment Solutions" />
+        </div>
+        <div class="slide">
+          <h3>Credit Solutions</h3>
+          <p class="wealth-subtitle">Tailored financing strategies to enhance liquidity and support long-term asset growth.</p>
+          <img src="photos/credit-solutions.png" alt="Credit Solutions" />
+        </div>
+        <div class="slide">
+          <h3>Alternative Investments</h3>
+          <p class="wealth-subtitle">Access to differentiated opportunities across private markets, real assets, and hedge strategies.</p>
+          <img src="photos/alternative-investments.png" alt="Alternative Investments" />
+        </div>
+        <div class="slide">
+          <h3>Private Investment Opportunities</h3>
+          <p class="wealth-subtitle">Exclusive direct investments curated for qualified investors seeking unique return profiles.</p>
+          <img src="photos/private-investments.png" alt="Private Investments" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation dots outside slider container -->
+    <div class="slider-nav">
+      <!-- Dots generated by JS -->
+    </div>
+  </section>
+
+  <section class="alternating-containers-section" style="padding: 60px 5%; max-width: 1200px; margin: 0 auto;">
+    <div class="container">
+      <div class="image-wrapper">
+        <img src="photos/hand.png" alt="Hand" />
+      </div>
+      <div class="text-wrapper">
+        <h3>Our Commitment</h3>
+        <p>We Understand Our Clients’ Needs, Nurture Our
+            People And Expand Our Partnerships To Buid
+            Long Term Value For All Our Stakeholders.</p>
+        <p>
+            MCMIP Wealth Management offers comprehensive bespoke external asset anagement services that help you achieve wealth preservation and maintain stable long-term growth.
+        </p>
+      </div>
+    </div>
+  
+    <div class="container reverse">
+      <div class="image-wrapper">
+        <img src="photos/map.png" alt="Map" />
+      </div>
+      <div class="text-wrapper">
+        <h3>Local Expertise with Global Connections</h3>
+        <p>MCM Partners with sophisticated investors and like-minded companies across cultural and geographic divides to identify unique opportunities and create lasting value.</p>
+      </div>
+    </div>
+  
+    <div class="container">
+      <div class="image-wrapper">
+        <img src="photos/mcm-wall.jpg" alt="mcm wall" />
+      </div>
+      <div class="text-wrapper">
+        <h3>Think for Today, Prepare for Tomorrow </h3>
+        <p> Like the ever-changing world around you, your life is constantly evolving, transforming your environment, your business and your family along the way. 
+
+            Whether you are still growing your wealth, planning for retirement or looking to pass on your legacy, we are here to help. 
+            
+            By clearly defining your wealth planning goals, we work with you to devise strategies that suit your needs.</p>
+      </div>
+    </div>
+  </section>
+  
+
+
+  <section class="firm-overview-image-section">
+    <h2 style="font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 2rem;">Our Partners</h2>
+    <img src="photos/mcm-partnerships.png" alt="MCM Partners Firm Partnerships" />
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-contact">
+        <div class="contact-item">
+          <h4>Address</h4>
+          <p>Henley Building, Suite 701, 7/F,</p>
+          <p>5 Queen's Road Central, Central<br />Hong Kong SAR</p>
+        </div>
+        <div class="contact-item">
+          <h4>Email</h4>
+          <p>info@mcmpartners.com</p>
+        </div>
+        <div class="contact-item">
+          <h4>Phone</h4>
+          <p>+852 2210 0888</p>
+        </div>
+      </div>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="capital-markets.html">Capital Markets</a></li>
+          <li><a href="private-credit.html">Private Credit</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-bottom">&copy; 2025 MCM Partners. All rights reserved.</div>
+    </div>
+  </footer>
+
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+      // Slider animation logic
+      const slides = document.querySelectorAll('.slide');
+      const navContainer = document.querySelector('.slider-nav');
+      let currentIndex = 0;
+      const totalSlides = slides.length;
+      let slideInterval;
+    
+      // Set slider-track width dynamically
+      const track = document.querySelector('.slider-track');
+      track.style.width = `${totalSlides * 100}%`;
+    
+      // Set each slide width dynamically
+      slides.forEach(slide => {
+        slide.style.flex = `0 0 calc(100% / ${totalSlides})`;
+        slide.style.maxWidth = `calc(100% / ${totalSlides})`;
+      });
+    
+      // Create navigation dots dynamically
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('button');
+        dot.setAttribute('aria-label', `Slide ${i + 1}`);
+        if (i === 0) dot.classList.add('active');
+        navContainer.appendChild(dot);
+    
+        dot.addEventListener('click', () => {
+          currentIndex = i;
+          updateSlider();
+          resetInterval();
+        });
+      }
+    
+      const dots = navContainer.querySelectorAll('button');
+    
+      function updateSlider() {
+        track.style.transform = `translateX(-${currentIndex * (100 / totalSlides)}%)`;
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[currentIndex].classList.add('active');
+    
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[currentIndex].classList.add('active');
+      }
+    
+      function moveToNextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateSlider();
+      }
+    
+      function resetInterval() {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(moveToNextSlide, 7000);
+      }
+    
+      // Start auto-slide
+      slideInterval = setInterval(moveToNextSlide, 7000);
+    
+      // Initial activation
+      slides[0].classList.add('active');
+    
+      // Intersection Observer for alternating containers fade-in
+      const containers = document.querySelectorAll('.alternating-containers-section .container');
+      const observerOptions = {
+        threshold: 0.1
+      };
+    
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+    
+      containers.forEach(container => {
+        observer.observe(container);
+      });
+    });
+
+
+    const partnersSection = document.querySelector('.firm-overview-image-section');
+
+const observerOptions = {
+  threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target); // Stop observing once visible
+    }
+  });
+}, observerOptions);
+
+if (partnersSection) {
+  observer.observe(partnersSection);
+}
+
+    </script>
+    
+
+</body>
+</html>

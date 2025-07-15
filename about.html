@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - MCM Partners</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Swiper CSS -->
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/swiper@6.8.4/swiper-bundle.min.css"
+/>
+  
+  <style>
+    :root {
+      --primary-blue: #0a2947;
+      --accent-blue: #2563eb;
+      --light-grey: #f8fafc;
+      --medium-grey: #64748b;
+      --dark-grey: #1e293b;
+      --white: #ffffff;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'EB Garamond', serif; /* Set EB Garamond as default */
+      background: var(--white);
+      color: var(--dark-grey);
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-top: 80px; /* offset fixed header */
+    }
+/* Header */
+header {
+  background: var(--primary-blue);
+  color: var(--white);
+  padding: 20px 5%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logo {
+  text-decoration: none;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+    .tagline {
+        font-family: 'EB Garamond', serif; /* Garamond for tagline */
+        font-size: 0.9rem;
+        color: #94a3b8;
+        margin-top: 2px;
+    }
+
+    .navbar {
+        background-color: #0a2947;
+        padding: 12px 5%;
+        font-family: 'EB Garamond', serif;
+        float: right;
+    }
+
+    .navbar ul a:hover, .navbar ul li a:hover {
+  color: var(--accent-blue); /* or any highlight color you’re using */
+}
+
+    .nav-menu {
+        list-style: none;
+        display: flex;
+        gap: 40px;
+        
+    }
+
+    .nav-menu > li {
+        position: relative;
+        appearance: none;
+    }
+
+    .nav-menu a {
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 12px;
+        display: block;
+        }
+
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        background-color: #ffffff;
+        top: 100%;
+        right: 0;
+        min-width: 180px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        z-index: 999;
+        list-style: none;
+    }
+
+    .dropdown-menu li a {
+        color: #0a2947;
+        padding: 10px 15px;
+        font-weight: 400;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    /* Team Section */
+    .team-section {
+      padding: 120px 5% 600px;
+      background: #f8f9fb;
+    }
+    
+    .team-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--dark-grey);
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .team-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+    }
+    
+    .team-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+    
+    .team-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .team-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+    
+    .team-info {
+      padding: 30px;
+    }
+    
+    .team-info h3 {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.3rem;
+      color: var(--primary-blue);
+      margin-bottom: 8px;
+    }
+    
+    .team-info .role {
+      font-family: 'EB Garamond', serif;
+      color: var(--accent-blue);
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    
+    .team-info p {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .clickable-photo {
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    
+    .clickable-photo:hover {
+      transform: scale(1.02);
+    }
+
+    .learn-more-btn {
+      background-color: var(--primary-blue);
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      font-family: 'EB Garamond', serif;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .learn-more-btn:hover {
+      background-color: var(--accent-blue);
+    }
+
+    .linkedin-button {
+      display: inline-block;
+      margin-top: 15px;
+      background-color: #0077b5;
+      color: white;
+      padding: 8px 16px;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease;
+    }
+    
+    .linkedin-button:hover {
+      background-color: #005885;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .modal-content {
+      background-color: white;
+      padding: 40px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      font-family: 'EB Garamond', serif;
+    }
+    
+    .wide-bio-modal {
+      max-width: 800px;
+    }
+    
+    .close-button {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      cursor: pointer;
+    }
+    
+    .close-button:hover {
+      color: #000;
+    }
+    
+    .bio-modal-photo {
+      float: left;
+      margin: 0 20px 20px 0;
+      border-radius: 8px;
+    }
+    
+    .modal-content h2 {
+      color: var(--primary-blue);
+      margin-bottom: 10px;
+    }
+    
+    .modal-content p {
+      line-height: 1.6;
+      color: #333;
+      text-align: justify;
+    }
+     /* Footer */
+     footer { background: var(--primary-blue); color: var(--white); padding:00px 0% 00px; text-align:center; }
+    .footer-content { max-width:1200px; margin:0 auto; }
+    .footer-contact { display:flex; justify-content:center; gap:60px; flex-wrap:wrap; margin-bottom:40px; }
+    .contact-item h4 {
+        font-family: 'Canela Light'; /* Garamond for contact titles */
+        font-size:1.1rem;
+        margin-bottom:10px;
+    }
+
+    .footer-nav {
+  text-align: center;
+  margin: 30px 0 10px;
+}
+
+.footer-nav ul {
+  list-style: none;
+  padding: 0;
+  display: inline-flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.footer-nav ul li a {
+  text-decoration: none;
+  color: #ffffff; /* Adjust if footer has a different background */
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.footer-nav ul li a:hover {
+  color: var(--accent-blue); /* or any highlight color you’re using */
+}
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      nav ul {
+        gap: 20px;
+      }
+      
+      .team-title {
+        font-size: 2.2rem;
+      }
+      
+      .team-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .modal-content {
+        padding: 30px 20px;
+        margin: 20px;
+      }
+      
+      .bio-modal-photo {
+        float: none;
+        display: block;
+        margin: 0 auto 20px;
+      }
+
+      
+
+      /* Variables */
+  :root {
+    --white: #fff;
+    --black: #000;
+    --primary: #d4a024;
+    --gray: #616161;
+  }
+
+  html,
+  body,
+  .lcontainer {
+    height: 600px;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    background: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+  }
+
+  h1.title {
+    font-size: 38px;
+    color: var(--gray);
+    font-style: italic;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  /* Timeline */
+  .timeline {
+    width: 100%;
+    background-color: var(--white);
+    box-shadow: 0 5px 25px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+  .swiper-container {
+  height: 900px;
+  width: 100%;
+  position: relative;
+}
+
+.swiper-slide {
+  position: relative;
+  color: var(--white);
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 900px;
+}
+
+.swiper-slide::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  right: -115%;
+  bottom: -10%;
+  width: 120%;
+  height: 120%;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: -300px 0 200px 80vw rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
+}
+
+.swiper-slide-content {
+  position: absolute;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+  right: 50%;
+  top: 20%;
+  transform: translate(50%, 0);
+  font-size: 14px;
+  z-index: 2;
+}
+
+
+  .timeline-year {
+    display: block;
+    font-style: italic;
+    font-size: 42px;
+    margin-bottom: 50px;
+    transform: translate3d(20px, 0, 0);
+    color: var(--primary);
+    font-weight: 300;
+    opacity: 0;
+    transition: 0.2s ease 0.4s;
+  }
+
+  .timeline-title {
+    font-weight: 800;
+    font-size: 34px;
+    margin: 0 0 30px;
+    opacity: 0;
+    transform: translate3d(20px, 0, 0);
+    transition: 0.2s ease 0.5s;
+  }
+
+  .timeline-text {
+    line-height: 1.5;
+    opacity: 0;
+    transform: translate3d(20px, 0, 0);
+    transition: 0.2s ease 0.6s;
+  }
+
+  .swiper-slide-active .timeline-year,
+  .swiper-slide-active .timeline-title,
+  .swiper-slide-active .timeline-text {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition-delay: 1.6s, 1.7s, 1.8s;
+  }
+
+  /* Pagination */
+  .swiper-pagination {
+    position: absolute;
+    right: 15% !important;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 18px;
+    z-index: 1;
+  }
+
+  .swiper-pagination::before {
+    content: "";
+    position: absolute;
+    left: -30px;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .swiper-pagination-bullet {
+    width: auto;
+    height: auto;
+    text-align: center;
+    opacity: 1;
+    background: transparent;
+    color: var(--primary);
+    margin: 15px 0 !important;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .swiper-pagination-bullet::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: -32.5px;
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    background-color: var(--primary);
+    transform: scale(0);
+    transition: 0.2s;
+  }
+
+  .swiper-pagination-bullet-active {
+    color: var(--primary);
+  }
+
+  .swiper-pagination-bullet-active::before {
+    transform: scale(1);
+  }
+
+  /* Navigation buttons */
+  .swiper-button-next,
+  .swiper-button-prev {
+    background-size: 20px 20px;
+    top: 15%;
+    width: 20px;
+    height: 20px;
+    margin-top: 0;
+    z-index: 2;
+    transition: 0.2s;
+    cursor: pointer;
+  }
+
+  .swiper-button-prev {
+    left: 8%;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2027%2044'%3E%3Cpath%20d='M0,22L22,0l2.1,2.1L4.2,22l19.9,19.9L22,44L0,22z'%20fill='%23d4a024'/%3E%3C/svg%3E");
+  }
+  .swiper-button-prev:hover {
+    transform: translateX(-3px);
+  }
+
+  .swiper-button-next {
+    right: 8%;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2027%2044'%3E%3Cpath%20d='M27,22L5,44l-2.1-2.1L22.8,22L2.9,2.1L5,0L27,22z'%20fill='%23d4a024'/%3E%3C/svg%3E");
+  }
+  .swiper-button-next:hover {
+    transform: translateX(3px);
+  }
+
+  /* Responsive */
+  @media screen and (min-width: 768px) {
+    .swiper-slide::after {
+      right: -30%;
+      bottom: -8%;
+      width: 240px;
+      height: 50%;
+      box-shadow: -230px 0 150px 50vw rgba(0, 0, 0, 0.7);
+    }
+
+    .swiper-slide-content {
+      right: 30%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 310px;
+      font-size: 11px;
+      text-align: right;
+    }
+
+    .timeline-year {
+      margin-bottom: 0;
+      font-size: 32px;
+    }
+
+    .timeline-title {
+      font-size: 46px;
+      margin: 0;
+    }
+
+    .swiper-pagination {
+      display: flex;
+    }
+
+    .swiper-button-prev {
+      top: 15%;
+      left: auto;
+      right: 15%;
+      transform: rotate(90deg) translate(0, 10px);
+    }
+    .swiper-button-prev:hover {
+      transform: rotate(90deg) translate(-3px, 10px);
+    }
+
+    .swiper-button-next {
+      top: auto;
+      bottom: 15%;
+      right: 15%;
+      transform: rotate(90deg) translate(0, 10px);
+    }
+    .swiper-button-next:hover {
+      transform: rotate(90deg) translate(3px, 10px);
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .swiper-slide::after {
+      right: -20%;
+      bottom: -12%;
+      width: 240px;
+      height: 50%;
+      box-shadow: -230px 0 150px 39vw rgba(0, 0, 0, 0.7);
+    }
+
+    .swiper-slide-content {
+      right: 25%;
+    }
+  }
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+        <div>
+            <a href="index.html" class="logo">MCM Partners</a>
+            <div class="tagline">Licensed • 25+ Years • Performance-Driven</div>
+          </div>          
+    <nav class="navbar">
+        <ul class="nav-menu">
+          <li class="dropdown">
+            <a href="capital_markets.html">Capital Markets</a>
+            <ul class="dropdown-menu">
+              <li><a href="private_placements.html">Private Placements</a></li>
+              <li><a href="ipos.html">Initial Public Offerings</a></li>
+              <li><a href="secondaries.html">Secondaries</a></li>
+              <li><a href="block_trades.html">Block Trades</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="asset_management.html">Asset Management</a>
+            <ul class="dropdown-menu">
+              <li><a href="ccf.html">Commodity Credit Fund</a></li>
+              <li><a href="exclusive_funds.html">Exclusive Funds</a></li>
+            </ul>
+          </li>
+          <a href="wealth.html">Wealth</a>
+          <a href="about.html">About</a>
+          <a href="contact_us.html">Contact Us</a>
+        </ul>
+      </nav>
+     </div>
+      
+  </header>
+
+  <section class="team-section">
+    <h1 class="team-title">Our Team</h1>
+    <div class="team-grid">
+      <!-- Daniel Rose Card -->
+      <div class="team-card">
+        <img src="https://media.licdn.com/dms/image/v2/D5603AQFfbW9qS03PLQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1685927434421?e=1756339200&v=beta&t=RZzwNf1pjRQgfZU9Srcdgk_IWc7rdkv0LH-5cPJhDSk" alt="Daniel Rose" class="clickable-photo" onclick="openModal('bioModalRose')" />
+        <div class="team-info">
+          <h3>Daniel Rose</h3>
+          <p class="role">Group CEO</p>
+          <p>Dan Rose leads the firm's global strategy and expansion, with a focus on cross-border transactions and natural resources.</p>
+        </div>
+      </div>
+
+      <!-- Adrian Valenzuela Card -->
+      <div class="team-card">
+        <img src="https://hkacademy.edu.hk/wp-content/uploads/2020/10/hka-boardchair-1920.jpg" alt="Adrian Valenzuela" class="clickable-photo" onclick="openModal('bioModalAdrian')" />
+        <div class="team-info">
+          <h3>Adrian Valenzuela</h3>
+          <p class="role">President & Founder</p>
+          <p>Adrian founded MCM Partners with a vision to create innovative financial solutions across global markets.</p>
+        </div>
+      </div>
+
+      <!-- Vivian Liu Card -->
+      <div class="team-card">
+        <img src="https://media.licdn.com/dms/image/v2/D5603AQEeKy17wYCHBg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1680155652419?e=1756339200&v=beta&t=QdPYJgSiyjucxH117PGSe_cQ-zQ26ii-bpoABwDmFwo" alt="Vivian Liu" class="clickable-photo" onclick="openModal('bioModalVivian')" />
+        <div class="team-info">
+          <h3>Vivian Liu</h3>
+          <p class="role">Partner & Group COO</p>
+          <p>Vivian oversees operational excellence and strategic partnerships across all MCM Partners divisions.</p>
+        </div>
+      </div>
+
+      <!-- Angie Ma Card -->
+      <div class="team-card">
+        <img src="https://mcmpartners.com/img/asset/YXNzZXRzL3RlYW0vQW5naWUtYmctd2hpdGUuanBn/Angie-bg-white.jpg?w=200&h=185&fm=webp&fit=crop-50-23-1&s=287e5ed1de676a3c7488c56ce6ecb7f9" alt="Angie" class="clickable-photo" onclick="openModal('bioModalAngie')" />
+        <div class="team-info">
+          <h3>Angie Ma</h3>
+          <p class="role">CEO of MCM Investment Partners</p>
+          <p>Angie has over 20 years of wealth management experience with leadership roles at Merrill Lynch, UBS, and Credit Suisse. Formerly Vice Chair at Bank J. Safra Sarasin, she now leads MCM Investment Partners and supports firm-wide strategy. She holds a Master’s from Columbia University.</p>
+        </div>
+      </div>
+
+      <!-- Katherine Williams Card -->
+      <div class="team-card">
+        <img src="https://mcmpartners.com/img/asset/YXNzZXRzL3RlYW0vS2F0LWJnLXdoaXRlLmpwZw==/Kat-bg-white.jpg?w=200&h=185&fm=webp&fit=crop-50-23-1&s=8fd2d60843559d7d1a9b60a303b25a08" alt="Katherine Williams" class="clickable-photo" onclick="openModal('bioModalKatherine')" />
+        <div class="team-info">
+          <h3>Katherine Williams</h3>
+          <p class="role">Head of Strategy</p>
+          <p>Katherine has over 20 years of experience in financial services across Asian equity and credit markets, including nearly a decade at OCP Asia as Head Trader and roles in investor relations and product development.</p>
+        </div>
+      </div>
+
+      <!-- Wenbin Dong Card -->
+      <div class="team-card">
+        <img src="https://media.licdn.com/dms/image/v2/C5103AQEkLGo_l8BSpQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1568218470750?e=1756339200&v=beta&t=sa-GqY-qKh_uyttjRPKWNmLAvE97dhmXIn6PXY58pdo" alt="Wenbin Dong" class="clickable-photo" onclick="openModal('bioModalWenbin')" />
+        <div class="team-info">
+          <h3>Wenbin Dong</h3>
+          <p class="role">Partner and CIO of MCM Investment Partners</p>
+          <p>Wenbin has held senior roles in private equity and research, including Managing Director at AVIC Capital International and Sales Director at Sumberg Advisory, where he led TMT research for major institutional clients. </p>
+        </div>
+      </div>
+    </div>
+
+
+  <section class="firm-overview-image-section" style="padding: 100px 10%; background: var(--white); text-align: center;">
+    <h2 style="font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 2rem; font-family: 'EB Garamond', serif;">
+      Firm Overview
+    </h2>
+    <img src="photos/mcm-credentials.png" alt="MCM Partners Firm Overview" style="max-width: 100%; height: auto; border-radius: 0px; box-shadow: 0 0px 0px rgba(255, 255, 255, 0.00);" />
+  </section>
+</section>
+
+
+
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-row">
+  
+        <!-- Contact Information -->
+        <div class="footer-contact">
+          <div class="contact-item">
+            <h4>Address</h4>
+            <p>Henley Building, Suite 701, 7/F,</p>
+            <p>5 Queen's Road Central, Central<br>Hong Kong SAR</p>
+          </div>
+          <div class="contact-item">
+            <h4>Email</h4>
+            <p>info@mcmpartners.com</p>
+          </div>
+          <div class="contact-item">
+            <h4>Phone</h4>
+            <p>+852 2210 0888</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-row">
+              <!-- Footer Navigation Bar -->
+              <nav class="footer-nav">
+                <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="about.html">About</a></li>
+                  <li><a href="capital-markets.html">Capital Markets</a></li>
+                  <li><a href="private-credit.html">Private Credit</a></li>
+                  <li><a href="insights.html">Insights</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                </ul>
+              </nav>
+            </div>
+      <div class="footer-row">
+      <div class="footer-bottom">
+        &copy; 2025 MCM Partners. All rights reserved.
+      </div>
+    </div>
+    </div>
+  </footer>
+  
+
+
+  <!-- Modals -->
+  <!-- Daniel Rose Modal -->
+  <div id="bioModalRose" class="modal">
+    <div class="modal-content wide-bio-modal">
+      <span class="close-button" onclick="closeModal('bioModalRose')">&times;</span>
+      <img src="https://media.licdn.com/dms/image/v2/D5603AQFfbW9qS03PLQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1685927434421?e=1756339200&v=beta&t=RZzwNf1pjRQgfZU9Srcdgk_IWc7rdkv0LH-5cPJhDSk" alt="Daniel Rose" class="bio-modal-photo" style="width: 100px; height: 175;">
+      <h2>Daniel Rose</h2>
+      <p><strong> Group CEO</strong></p>
+      <p>Prior to joining MCM, Daniel was CEO and Board Director of VTB Capital Hong Kong (VTBC), overseeing an SFC regulated Investment Banking platform focused on natural resources activities across Global Markets, Structured & Corporate Finance, M&A and Asset Management. In addition to his role as CEO, Daniel led the bank's Asian Commodities business which actively traded physical metals, energy, bulks, agri and provided bespoke financing, equity, credit and derivative solutions to clients across Asia-Pac. Daniel has spent 20 years in the commodity markets and investment banking working for Societe Generale, Goldman Sachs and Morgan Stanley (prior to VTBC) in Sydney, London, Hong Kong and Singapore. Daniel holds a Bachelor of Law (Honors) and Bachelor of Commerce from Bond University in Australia and serves as a non-executive director of ASX listed Pivotal Metals (ASX : PVT).</p>
+      <a href="https://www.linkedin.com/in/dan-rose-89994810/" target="_blank" class="linkedin-button">LinkedIn</a>
+    </div>
+  </div>
+
+  <!-- Adrian Modal -->
+  <div id="bioModalAdrian" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal('bioModalAdrian')">&times;</span>
+      <img src="https://hkacademy.edu.hk/wp-content/uploads/2020/10/hka-boardchair-1920.jpg" alt="Adrian Valenzuela" class="bio-modal-photo" style="width: 100px; height: 175;"/>
+      <h2>Adrian Valenzuela</h2>
+          <p><strong>Former Managing Director and Co-Head of Global Equities Distribution, JP Morgan.</strong></p>
+          <p>Adrian Valenzuela is Co-Founder and CEO of MCM Partners. He relocated to Hong Kong in early 2011 and joined Barclays Capital as a Managing Director and Head of Distribution for Equity Liquid Markets across the Asia Pacific Region. He played a central role in the firm’s expansion, participating in the hiring of circa 200 staff recruited across sales, trading and research. He was a member of the Global Equities Management Committee, Asia Sales Management Committee, and Asian Equities Executive and Management Committees.</p>
+          <p>He previously worked for JP Morgan from early 2007 and had several promotions during his time, latterly co-heading the global distribution across cash equities and equity derivatives for the equity division. He was part of the Global Equities Executive Committee, Equity Derivatives Global Management Committee and the Global Cash Equity Management Committee. He managed a sales force of over 500 sales professionals across the globe, delivering sales, trading and advisory to global institutional investors and corporations across equity products.</p>
+          <p>Between 2006 and 2007, Adrian ran the Alpha Strategies Group for Merrill Lynch International, working on advisory projects for various institutional investors across asset classes, and coordinating the strategic marketing campaigns across the equity division.</p>
+          <p>In 2005, he was a Founding Partner and Head of Marketing and Product Development for Wealth Management Group (WMG), an alternative asset management firm. He worked extensively in new fund development and capital-raising for various funds.</p>
+          <p>Previously, Adrian worked at Lehman Brothers International as Head of Pan-European Flow Derivatives Sales, including the coverage of global hedge funds for European derivative markets. He also worked at Morgan Stanley New York from 1998 until 2002 as Head of Equity Derivative Sales for Latin America and in the derivatives sales team for US hedge funds. In early 2002, he transferred to London as a senior salesperson for the European Hedge Fund Sales Desk for equity derivatives, also heading the sales teams for Southern Europe and France.</p>
+          <p>Adrian holds a BA in Economics from the Instituto Tecnologico Autonomo de Mexico, as well as various other certificates and degrees, including graduating from the Stanford University Senior Leadership Program. He began his career in emerging markets, trading fixed income securities for Santander from 1991 through 1994, later moving to ING Barings as part of their equities, equity strategy and equity derivatives teams.</p>
+          <a href="https://www.linkedin.com/in/adrian-valenzuela-b4415931//" target="_blank" class="linkedin-button">LinkedIn</a>
+        </div>
+  </div>
+
+  <!-- Vivian Modal -->
+  <div id="bioModalVivian" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal('bioModalVivian')">&times;</span>
+      <img src="https://media.licdn.com/dms/image/v2/D5603AQEeKy17wYCHBg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1680155652419?e=1756339200&v=beta&t=QdPYJgSiyjucxH117PGSe_cQ-zQ26ii-bpoABwDmFwo" alt="Vivian Liu" class="bio-modal-photo" style="width: 100px; height: 175;"/>
+      <p><strong>Partner & Group COO</strong></p>
+      <p>Vivian Liu brings over 12 years of operational and strategic experience to MCM Partners. She oversees the firm's day-to-day operations, risk management, and compliance functions. Prior to joining MCM, Vivian held senior positions at leading financial institutions in Asia, where she specialized in operational efficiency and strategic partnerships.</p>
+      <a href="https://www.linkedin.com/in/mcmpartnersvl/?originalSubdomain=hk" target="_blank" class="linkedin-button">LinkedIn</a>
+    </div>
+  </div>
+
+    <!-- Angie Modal -->
+  <div id="bioModalAngie" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal('bioModalAngie')">&times;</span>
+      <img src="https://mcmpartners.com/img/asset/YXNzZXRzL3RlYW0vQW5naWUtYmctd2hpdGUuanBn/Angie-bg-white.jpg?w=200&h=185&fm=webp&fit=crop-50-23-1&s=287e5ed1de676a3c7488c56ce6ecb7f9" alt="Angie Ma" class="bio-modal-photo" style="width: 100px; height: 175;"/>
+      <h2>Angie Ma</h2>
+      <p><strong>CEO of MCM Investment Partners</strong></p>
+      <p>Angie has more than 20 years of experience in global wealth management and private banking. Her career spans New York, Singapore and Hong Kong with major global banks namely Merrill Lynch, UBS and Credit Suisse where she held senior leadership roles as Managing Director and Market Leader for China. Prior to joining MCM, she was Vice Chair and Managing Director of Bank J Safra Sarasin Client Advisory.
+
+        At MCM, she is CEO of MCM Investment Partners, leading the growth of our asset management business, as well as working closely with the group CEO in firm-wide strategic initiatives. Angie earned Master of International Affairs with concentration in international banking and finance from Columbia University in the City of New York.</p>
+    </div>
+  </div>
+
+    <!-- Katherine Modal -->
+  <div id="bioModalKatherine" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal('bioModalKatherine')">&times;</span>
+      <img src="https://mcmpartners.com/img/asset/YXNzZXRzL3RlYW0vS2F0LWJnLXdoaXRlLmpwZw==/Kat-bg-white.jpg?w=200&h=185&fm=webp&fit=crop-50-23-1&s=8fd2d60843559d7d1a9b60a303b25a08" alt="Katherine Williams" class="bio-modal-photo" style="width: 100px; height: 175;"/>
+      <h2>Katherine Williams</h2>
+      <p><strong>Head of Strategy</strong></p>
+      <p>Katherine has over 20 years of experience in Financial services on both the buy and sell side with a focus on Asian equity and credit markets. Prior to joining MCM Partners, Katherine worked at OCP Asia Limited (Formerly Stark Investments) for close to 10 years where she was the Head Trader and was responsible for all trading across a multi-product platform. She was also involved in Investor Relations and assisting with the marketing of new funds and the development of new alternative products. She previously also worked at JP Morgan Chase for close to 10 years, starting in the Internal Consulting group and later in the Derivatives Middle Office and prior to leaving JP Morgan Chase was in the Equity Derivatives and Delta One Sales team responsible for the sales and marketing of Asian market access and derivative products.
+
+        Katherine graduated summa cum laude from Tufts University with a BA in International Relations and Japanese.</p>
+    </div>
+  </div>
+
+    <!-- Wenbin Modal -->
+  <div id="bioModalWenbin" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal('bioModalWenbin')">&times;</span>
+      <img src="https://media.licdn.com/dms/image/v2/C5103AQEkLGo_l8BSpQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1568218470750?e=1756339200&v=beta&t=sa-GqY-qKh_uyttjRPKWNmLAvE97dhmXIn6PXY58pdo" alt="Wenbin Dong" class="bio-modal-photo" style="width: 100px; height: 175;"/>
+      <h2>Wenbin Dong</h2>
+      <p><strong>Partner and CIO of MCM Investment Partners</strong></p>
+      <p>Before re-joining MCM Partners, Wenbin worked as Managing Director for AVIC Capital International, the international investment platform of AVIC, a leading central SOE of China, in charge of private equity investment. From 2012 to 2014, Wenbin worked as the Sales Director for Sumberg Advisory, a leading independent research house in Mainland China. Sumberg is renowned for its research on macroeconomics, TMT and thematics. He was also in charge of TMT research, serving the largest institutional investors and sovereign funds across the Mainland. Wenbin started his career with AXA Investment Managers (Investment Solutions Department) before moving to Sociétés Générales in Paris, working on fixed income pricing.
+
+        Wenbin holds a Master of Science degree in Artificial Intelligence from l’Institut National des Sciences Appliquées (INSA) in Toulouse, France.</p>
+        <a href="https://www.linkedin.com/in/wenbin-dong-a639062b/" target="_blank" class="linkedin-button">LinkedIn</a>
+    </div>
+  </div>
+
+  <script>
+    // Unified modal handling
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Close modal when clicking outside
+    window.addEventListener('click', function(event) {
+      if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        document.querySelectorAll('.modal').forEach(modal => {
+          modal.style.display = 'none';
+        });
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@6.8.4/swiper-bundle.min.js"></script>
+
+<script>
+  // Generate slides dynamically (6 slides)
+  const swiperWrapper = document.querySelector('.swiper-wrapper');
+  for (let i = 1; i <= 6; i++) {
+    const slide = document.createElement('div');
+    slide.classList.add('swiper-slide');
+    slide.style.backgroundImage = `url(https://unsplash.it/1920/500?image=1${i})`;
+    slide.setAttribute('data-year', `201${i}`);
+
+    slide.innerHTML = `
+      <div class="swiper-slide-content">
+        <span class="timeline-year">201${i}</span>
+        <h4 class="timeline-title">Our nice super title</h4>
+        <p class="timeline-text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      </div>
+    `;
+
+    swiperWrapper.appendChild(slide);
+  }
+
+  // Initialize Swiper
+  var timelineSwiper = new Swiper('.timeline .swiper-container', {
+    direction: 'vertical',
+    loop: false,
+    speed: 1600,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+      768: {
+        direction: 'horizontal',
+      },
+    },
+  });
+</script>
+
+</body>
+</html>
