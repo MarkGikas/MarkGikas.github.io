@@ -1,0 +1,2099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCM Partners</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary-blue: #0a2947;
+      --accent-blue: #2563eb;
+      --light-grey: #f8fafc;
+      --medium-grey: #64748b;
+      --dark-grey: #1e293b;
+      --white: #ffffff;
+      --gradient-gold: linear-gradient(135deg, #ffd700 0%, #b7651d 100%);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+        margin: 0;
+        font-family: 'Canela Light'; /* Keep your font-family for general body text */
+        scroll-behavior: smooth;
+        position: relative; /* Crucial for positioning the pseudo-elements */
+        min-height: 100vh; /* Ensure body takes at least full viewport height */
+        z-index: 1; /* Important for stacking context relative to pseudo-elements */
+}
+
+/* New CSS for the scrolling background image and tint */
+body::before {
+    content: '';
+    position: fixed; /* Stays fixed in the viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(174,175,244,0.5), rgba(8,0,246,0.5)), url("https://www.discoverhongkong.com/content/dam/dhk/intl/explore/attractions/the-charm-of-the-bright-city/the-charm-of-the-bright-city-1920x1080.jpg");
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; /* This creates the parallax-like effect */
+    z-index: -2; /* Place it behind all content */
+}
+
+body::after {
+    content: '';
+    position: fixed; /* Stays fixed in the viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allows clicks/interactions to pass through the overlay */
+    z-index: -1; /* Place it above the background image, but still behind content */
+    /* REMOVE the transition here, as JS will directly set the opacity */
+}
+
+/* Class added by JavaScript when scrolled */
+    /* Header */
+    header {
+  background: var(--primary-blue);
+  color: var(--white);
+  padding: 20px 5%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logo {
+  text-decoration: none;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+    .tagline {
+        font-family: 'Canela Light'; /* Garamond for tagline */
+        font-size: 0.9rem;
+        color: #94a3b8;
+        margin-top: 2px;
+    }
+
+    .navbar {
+        background-color: #0a2947;
+        padding: 12px 5%;
+        font-family: 'Canela Light';
+        float: right;
+    }
+
+    .navbar ul a:hover, .navbar ul li a:hover {
+       color: var(--accent-blue); 
+    }
+
+
+    .nav-menu {
+        list-style: none;
+        display: flex;
+        gap: 40px;
+        
+    }
+
+    .nav-menu > li {
+        position: relative;
+        appearance: none;
+    }
+
+    .nav-menu a {
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 12px;
+        display: block;
+        }
+
+        
+
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        background-color: #ffffff;
+        top: 100%;
+        right: 0;
+        min-width: 180px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        z-index: 999;
+        list-style: none;
+    }
+
+    .dropdown-menu li a {
+        color: #0a2947;
+        padding: 10px 15px;
+        font-weight: 400;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    /* Hero */
+    /* Find your existing .hero rule and modify it */
+    .hero {min-height: calc(100vh - 80px); 
+      background-color: transparent; 
+      display: flex; 
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--white);
+      padding: 0 5%;
+}
+
+
+    .hero-content { max-width: 800px; animation: fadeInUp 1s ease forwards; } /* Adjusted animation duration */
+    .hero h1 {
+        font-family: 'Canela Light'; /* Garamond for hero title */
+        font-size: clamp(3.0rem, 5vw, 4rem);
+        font-weight: 800;
+        margin-bottom: 24px;
+        line-height: 1.2;
+    }
+
+    
+    .hero-subtitle {
+        font-family: 'Canela Light'; /* Garamond for hero subtitle */
+        font-size: 1.3rem;
+        margin-bottom: 40px;
+        opacity: 0.9;
+        font-weight: 400;
+    }
+
+
+    .hero-stats { display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; counter-reset: count;}
+    .stat-item { text-align: center; }
+    .stat-number {
+        counter-increment: count; /* Increment the counter */
+        content: counter(count);  /* Display the counter value */
+        font-family: 'Canela Light'; /* Garamond for stats */
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--white);
+        display: block;
+        transition: transform 0.5s ease, color 0.5s ease;
+    }
+
+    .stat-number:hover {
+      transform: scale(1.1);
+      color: #ffc022;
+    }
+
+    .stat-label {
+        font-family: 'Canela Light'; /* Garamond for stat labels */
+        font-size: 0.95rem;
+        opacity: 0.8;
+        margin-top: 4px;
+    } 
+
+    
+
+
+    /* Divisions */
+    .divisions-section { padding: 120px 5%; background: transparent; }
+    .divisions-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+    .division-card {
+    background: var(--white);
+    border-radius: 1px;
+    padding: 60px 40px;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s ease; /* Keep existing transitions for hover effects */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+    
+    /* Initial state for fade-in effect */
+    opacity: 0;
+    transform: translateY(30px); /* Start slightly below its final position */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out, all 0.4s ease; /* Add transition for opacity and transform */
+}
+    
+/* New class for when the card is visible */
+.division-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+    
+    .division-card::before { content: ''; position: absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--accent-blue), var(--primary-blue)); transform: scaleX(0); transition: transform 0.3s ease; }
+    .division-card:hover::before { transform: scaleX(1); }
+    .division-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+    .division-card h2 {
+        font-family: 'Canela Light'; /* Garamond for division card titles */
+        font-size: 2.2rem;
+        font-weight:600;
+        margin-bottom:20px;
+        color: var(--dark-grey);
+    }
+    .division-card h3 {
+        font-family: 'Canela Light'; /* Garamond for division card h3 (if used) */
+        font-size: 2.2rem;
+        font-weight:600;
+        margin-bottom:20px;
+        color: var(--white);
+    }
+    .division-card p {
+        font-family: 'Canela Light'; /* Garamond for division card paragraphs */
+        font-size:1.1rem;
+        color: var(--medium-grey);
+        line-height:1.7;
+        margin-bottom:30px;
+    }
+    .division-highlights { display:flex; justify-content:center; gap:30px; flex-wrap:wrap; margin-top:30px; }
+    .highlight-item { text-align:center; }
+    .highlight-number {
+        font-family: 'Canela Light'; /* Garamond for highlight numbers */
+        font-size:1.8rem;
+        font-weight:700;
+        color: var(--accent-blue);
+        display:block;
+    }
+    .highlight-label {
+        font-family: 'Canela Light'; /* Garamond for highlight labels */
+        font-size:0.9rem;
+        color: var(--dark-grey);
+        margin-top:4px;
+    }
+    .card-img-top {
+        width: 100%;
+        height: 300px; /* Fixed height for consistent card size */
+        object-fit: cover; /* Cover the area, cropping as needed */
+        margin-bottom: 20px; /* Space between image and text */
+        border-radius: 4px; /* Slightly rounded corners for images */
+    }
+
+    .learn-more-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: left;
+}
+
+.lm-button {
+  background-color: var(--primary-blue);
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 0px;
+  transition: background-color 0.3s ease;
+}
+
+.lm-button:hover {
+  background-color: #2248c5;
+}
+
+
+    /* Funds Section Styling */
+    .funds-section-wrapper {
+        padding-top: 60px;
+        background-color: transparent;
+    }
+    .funds-section-wrapper .funds-title { /* Targeting the section title specifically */
+        font-family: 'Canela Light'; /* Garamond for funds title */
+        font-size: 2.8rem; /* Larger, more impactful title */
+        font-weight: 700;
+        color: var(--white);
+        text-align: center; /* Center the title */
+        margin-bottom: 50px; /* More space below title */
+        padding-top: 60px; /* Padding above the title */
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s ease-out;
+    }
+
+
+    .funds-title.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+    .funds-section {
+      max-width: 1400px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 50px;
+      padding: 0 5% 60px 5%; /* Adjusted padding for section */
+    }
+    .fund-card {
+      background: var(--white);
+      border: 1px solid #e0e0e0;
+      border-radius: 0px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      position: relative; /* Needed for button positioning */
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      will-change: opacity, transform;
+    }
+    .fund-card.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fund-card:nth-child(1) { transition-delay: 0.1s; }
+    .fund-card:nth-child(2) { transition-delay: 0.2s; }
+    .fund-card:nth-child(3) { transition-delay: 0.3s; }
+    .fund-card:hover {
+      transform: scale(1.01); /* Subtle lift on hover */
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+
+      .funds-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-items: center; /* ensures content is centered inside each column */
+}
+
+.fund-box {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
+.fund-box img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.fund-box:hover img {
+  transform: scale(1.05);
+}
+
+.fund-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(10, 41, 71, 0.95), rgba(10, 41, 71, 0.4));
+  color: white;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  text-align: center;
+}
+
+.fund-box:hover .fund-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fund-overlay h3 {
+  font-family: 'Canela Light';
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.fund-overlay p {
+  font-family: 'Canela Light';
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+
+    .learn-more-btn { /* Only for fund buttons now */
+      font-family: 'Canela Light', serif;
+      background-color: var(--accent-blue, #2c6bed); /* Fallback color */
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+      display: inline-block; /* Ensures padding works correctly */
+    }
+    .learn-more-btn:hover {
+        background-color: #110070; /* Slightly darker blue on hover */
+    }
+
+    .deals-section {
+  padding: 160px 5%;
+  background-color: transparent;
+  text-align: center;
+}
+
+.deals-title {
+  font-family: 'Canela Light';
+  font-size: 2.8rem;
+  color: var(--white);
+  margin-bottom: 50px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-out;
+  }
+
+
+    .deals-title.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.deals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.deal-box {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  opacity: 0;
+  cursor: pointer;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+    }
+
+  .deal-box.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .deal-box:nth-child(1) { transition-delay: 0.1s; }
+    .deal-box:nth-child(2) { transition-delay: 0.2s; }
+    .deal-box:nth-child(3) { transition-delay: 0.3s; }
+    .deal-box:nth-child(4) { transition-delay: 0.4s; }
+    .deal-boxhover {
+      transform: scale(1.01); /* Subtle lift on hover */
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+
+.deal-box img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.deal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(10, 41, 71, 0.95), rgba(10, 41, 71, 0.4));
+  color: white;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  text-align: center;
+}
+
+.deal-box:hover img {
+  transform: scale(1.05);
+}
+
+.deal-box:hover .deal-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.deal-overlay h3 {
+  font-family: 'Canela Light';
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.deal-overlay p {
+  font-family: 'Canela Light';
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+    /* New Solutions Section Styling (Hover-based snippets) */
+    .solutions-section-wrapper {
+        padding: 60px 0 120px 0; /* Top and bottom padding, more at bottom */
+        background-color: --white; /* White background for this section */
+    }
+    .solutions-section-wrapper .solutions-title {
+        font-family: 'Canela Light';
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: var(--white);
+        text-align: center;
+        margin-bottom: 50px;
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s ease-out;
+    }
+
+
+.solutions-title.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+    .solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.solution-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0px;
+  aspect-ratio: 1 / 1; /* Makes it perfectly square */
+  cursor: pointer;
+  font-family: 'Canela Light';
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* When visible */
+.solution-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.solution-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.solution-content-static {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 12px;
+  text-align: center;
+  transition: opacity 0.3s ease;
+}
+
+.solution-content-static h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.solution-content-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 15px;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.solution-card:hover .solution-content-wrapper {
+  transform: translateY(0);
+}
+
+.solution-card:hover .solution-content-static {
+  opacity: 0;
+}
+
+.solution-more-info {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 768px) {
+  .solutions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+    /* Solution Overlay (Snippet and button) */
+    .solution-content-wrapper { /* Renamed from overlay to be more semantically correct for content */
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(to top, rgba(10, 41, 71, 0.95) 0%, rgba(10, 41, 71, 0.7) 70%, rgba(10, 41, 71, 0.0) 100%); /* Gradient for better blending */
+        color: var(--white);
+        padding: 20px; /* Adjusted padding */
+        box-sizing: border-box;
+        transform: translateY(100%); /* Start off-screen at the bottom */
+        opacity: 0;
+        transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end; /* Align content to the bottom */
+        align-items: center;
+        text-align: center;
+        min-height: 100%; /* Take full height of card for gradient */
+        padding-top: 100px; /* Push content down initially for the gradient to work */
+    }
+    .solution-card:hover .solution-content-wrapper {
+        transform: translateY(0); /* Slide up into view */
+        opacity: 1;
+    }
+    .solution-content-wrapper p {
+        font-family: 'Canela Light';
+        font-size: 1rem;
+        line-height: 1.5;
+        margin: 0 0 20px 0; /* Margin below text */
+        color: var(--white);
+    }
+    .solution-content-wrapper h3 { /* Ensure title is visible through the gradient */
+        font-family: 'Canela Light';
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+        font-weight: 600;
+        color: var(--white); /* Title is white when overlay is active */
+    }
+    .solution-more-info {
+        display: inline-block;
+        background-color: var(--accent-blue);
+        color: var(--white);
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+        border: none;
+        cursor: pointer;
+        font-family: 'Canela Light';
+        font-size: 1rem;
+        margin-top: 10px; /* Space between text and button */
+    }
+    .solution-more-info:hover {
+        background-color: #110070;
+    }
+
+
+    /* Modal Styles (Funds and Solutions) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 2000; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+      backdrop-filter: blur(5px); /* Blurred background */
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .modal-content {
+      background-color: var(--white);
+      margin: auto;
+      padding: 40px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      position: relative;
+      animation: fadeIn 0.4s ease-out;
+      max-height: 90vh; /* Max height for modal content */
+      overflow-y: auto; /* Enable scrolling within modal */
+    }
+    .modal-content h3 {
+        font-family: 'Canela Light'; /* Garamond for modal titles */
+        font-size: 2.2rem;
+        color: var(--primary-blue);
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+    .modal-content p {
+        font-family: 'Canela Light'; /* Garamond for modal paragraphs */
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--dark-grey);
+        margin-bottom: 15px;
+    }
+    .modal-content ul {
+        font-family: 'Canela Light'; /* Garamond for modal lists */
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 20px;
+    }
+    .modal-content ul li {
+        font-family: 'Canela Light'; /* Garamond for modal list items */
+        font-size: 1.05rem;
+        margin-bottom: 10px;
+        color: var(--dark-grey);
+        position: relative;
+        padding-left: 30px;
+    }
+    .modal-content ul li i { /* Icon styling for modal lists */
+        color: var(--accent-blue);
+        position: absolute;
+        left: 0;
+        top: 3px;
+        font-size: 1.2rem;
+    }
+    .modal-content img { /* Style for images inside modals */
+        width: 100%;
+        height: 250px; /* Fixed height for modal images */
+        object-fit: cover;
+        border-radius: 5px;
+        margin-bottom: 25px;
+    }
+    .bio-modal-photo {
+        width: 20%;
+        height: auto;
+        border-radius: 100px;
+        display: block;
+        margin: 0 auto 30px auto;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+    .close-button {
+      color: var(--medium-grey);
+      font-size: 35px;
+      font-weight: bold;
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    .close-button:hover,
+    .close-button:focus {
+      color: var(--primary-blue);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Team Section */
+    .team-section {
+      padding: 120px 5%;
+      background: transparent;
+    }
+    .team-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+    }
+    .team-card {
+      background: white;
+      border-radius: 0px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      transition: 0.3s ease;
+    }
+    .team-card:hover {
+      transform: translateY(-5px);
+    }
+    .team-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+    .team-info {
+      padding: 30px;
+    }
+
+    .team-title {
+        font-family: 'Canela Light';
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: white;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    .team-info h3 {
+      font-family: 'Canela Light'; /* Garamond for team member names */
+      font-size: 1.3rem;
+      color: var(--primary-blue); /* Use primary blue for names */
+      margin-bottom: 8px;
+    }
+    .team-info .role {
+      font-family: 'Canela Light'; /* Garamond for team member roles */
+      color: var(--accent-blue); /* Use accent for role */
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    .team-info p {
+      font-family: 'Canela Light'; /* Garamond for team member descriptions */
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .clickable-photo {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.clickable-photo:hover {
+  transform: scale(1.05);
+  
+}
+
+.linkedin-button {
+  display: inline-block;
+  margin-top: 8px;
+  background-color: #0077b5;
+  color: white;
+  padding: 6px 12px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.team-learn-more-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.lm {
+  font-family: 'Canela Light';
+  display: inline-block;
+  background-color: var(--primary-blue);
+  color: var(--white);
+  padding: 12px 24px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+}
+
+.lm:hover {
+  background-color: #110070;
+}
+
+
+    /* Insights Section */
+    .insights-section {
+      padding: 120px 5%;
+      background: --white;
+    }
+    .insights-head {
+       max-width: 1200px;
+       margin: 0 auto 40px auto;
+       display: flex;
+       justify-content: flex-start; /* snap to the left */
+    }
+
+    .insights-title {
+        font-family: 'Canela Light'; /* Garamond for insights title */
+        font-size: 2.8rem; /* Consistent title size */
+        font-weight: 700;
+        color: var(--white);
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .insights-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+    }
+    .insight-card {
+      border-radius: 0px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      transition: 0.3s ease;
+      background-color: #e0e0e0;
+    }
+    .insight-card:hover {
+      transform: translateY(-5px);
+    }
+    .insight-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .insight-content {
+      padding: 30px;
+    }
+    .insight-meta {
+      font-family: 'Canela Light'; /* Garamond for insight meta */
+      color: var(--accent-blue); /* Use accent for meta info */
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .insight-content h5 {
+      font-family: 'Canela Light'; /* Garamond for insight titles */
+      font-size: 1.3rem;
+      color: var(--primary-blue); /* Use primary for article titles */
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+    .insight-content p { /* Changed 'd' to 'p' for standard HTML */
+      font-family: 'Canela Light'; /* Garamond for insight description */
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* Overlay */
+    .division-overlay { position:absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(135deg, rgba(37,99,235,0.95), rgba(10,41,71,0.95)); color: var(--white); opacity:0; visibility:hidden; transition: all 0.4s ease; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:40px; border-radius:0; backdrop-filter: blur(10px); }
+    .division-card:hover .division-overlay { opacity:1; visibility:visible; }
+    .overlay-content h3 {
+        font-family: 'Canela Light'; /* Garamond for overlay h3 */
+        font-size:2rem;
+        margin-bottom:20px;
+        font-weight:600;
+    }
+    .overlay-content p {
+        font-family: 'Canela Light'; /* Garamond for overlay paragraphs */
+        font-size:1.1rem;
+        line-height:1.6;
+        margin-bottom:25px;
+        opacity:0.95;
+        color: var(--white);
+    }
+    .overlay-highlights { display:grid; grid-template-columns:repeat(2,1fr); gap:25px; margin-bottom:25px; }
+    .overlay-highlight-item { background: rgba(255, 255, 255, 0.15); padding:20px; border-radius:0; backdrop-filter: blur(10px); border:1px solid rgba(255,255,255,0.2); }
+    .overlay-highlight-item h4 {
+        font-family: 'Canela Light';
+        font-size:1.1rem;
+        margin-bottom:8px;
+        font-weight:600;
+        color: var(--white);
+    }
+    .overlay-highlight-item h5 {
+        font-family: 'Canela Light'; /* Garamond for overlay highlight h5 */
+        font-size:1.1rem;
+        margin-bottom:8px;
+        font-weight:600;
+        color: var(--dark-grey);
+    }
+    .overlay-highlight-item p {
+        font-family: 'Canela Light'; /* Garamond for overlay highlight paragraphs */
+        font-size:0.95rem;
+        opacity:0.9;
+        margin:0;
+    }
+    .overlay-clients { display:flex; justify-content:center; gap:15px; flex-wrap:wrap; margin-top:20px; }
+    .overlay-client-badge {
+        font-family: 'Canela Light'; /* Garamond for client badges */
+        background: rgba(255,255,255,0.2);
+        padding:8px 16px;
+        border-radius:0;
+        font-size:0.85rem;
+        font-weight:500;
+        border:1px solid rgba(255,255,255,0.3);
+    }
+    /* Footer */
+    footer { background: var(--primary-blue); color: var(--white); padding:60px 5% 30px; text-align:center; }
+    .footer-content { max-width:1200px; margin:0 auto; }
+    .footer-contact { display:flex; justify-content:center; gap:60px; flex-wrap:wrap; margin-bottom:40px; }
+    .contact-item h4 {
+        font-family: 'Canela Light'; /* Garamond for contact titles */
+        font-size:1.1rem;
+        margin-bottom:10px;
+    }
+
+    .footer-nav {
+  text-align: center;
+  margin: 30px 0 10px;
+}
+
+.footer-nav ul {
+  list-style: none;
+  padding: 0;
+  display: inline-flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.footer-nav ul li a {
+  text-decoration: none;
+  color: #ffffff; /* Adjust if footer has a different background */
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.footer-nav ul li a:hover {
+  color: var(--accent-blue); /* or any highlight color you’re using */
+}
+
+
+
+    /* Animations */
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(30px);} to { opacity:1; transform:translateY(0);} }
+    /* Responsive */
+    @media (max-width:768px) {
+      .divisions-container { grid-template-columns:1fr; gap:40px; }
+      .hero-stats { gap:30px; }
+      .division-highlights { gap:20px; }
+      .footer-contact { gap:30px; }
+      .funds-section, .solutions-grid { /* Apply to both grid sections */
+        grid-template-columns: 1fr; /* Single column on small screens */
+        padding: 0 20px 140px 20px; /* Adjust padding */
+      }
+      .modal-content {
+        width: 95%; /* Make modal a bit wider on small screens */
+        padding: 20px;
+      }
+      .solution-card {
+          min-height: 280px; /* Adjust height for mobile */
+      }
+      .solution-content-static {
+          padding: 15px; /* Smaller padding for mobile */
+      }
+      .solution-content-static h3 {
+          font-size: 1.5rem; /* Smaller title for mobile */
+      }
+      .solution-content-wrapper {
+          padding: 15px; /* Smaller padding for mobile hover content */
+      }
+      .solution-content-wrapper p {
+          font-size: 0.9rem;
+          margin-bottom: 15px;
+      }
+      .solution-more-info {
+          padding: 8px 15px;
+          font-size: 0.9rem;
+      }
+    }
+
+    .scroll-tint-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background-color: rgba(0, 21, 255, 0); /* starting value */
+      z-index: -1; /* make sure it's behind content but above background image */
+      transition: background-color 0.3s ease;
+    }
+
+    /* Generic fade-in/out */
+    .scroll-fade-section {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 1s ease-out, transform 1s ease-out, filter 1s ease-out;
+}
+
+.scroll-fade-section.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+
+}
+
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+        <div>
+            <a href="index.html" class="logo">MCM Partners</a>
+            <div class="tagline">Licensed • 25+ Years • Performance-Driven</div>
+          </div>          
+    <nav class="navbar">
+        <ul class="nav-menu">
+          <li class="dropdown">
+            <a href="capital_markets.html">Capital Markets</a>
+            <ul class="dropdown-menu">
+              <li><a href="private_placements.html">Private Placements</a></li>
+              <li><a href="ipos.html">Initial Public Offerings</a></li>
+              <li><a href="secondaries.html">Secondaries</a></li>
+              <li><a href="block_trades.html">Block Trades</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="asset_management.html">Asset Management</a>
+            <ul class="dropdown-menu">
+              <li><a href="ccf.html">Commodity Credit Fund</a></li>
+              <li><a href="exclusive_funds.html">Exclusive Funds</a></li>
+            </ul>
+          </li>
+          <a href="wealth.html">Wealth</a>
+          <a href="about.html">About</a>
+          <a href="contact_us.html">Contact Us</a>
+        </ul>
+      </nav>
+     </div>
+  </header>
+
+  <section class="hero scroll-fade-section">
+    <div class="hero-content">
+      <h1>MCM Partners</h1>
+      <p class="hero-subtitle">Exclusive access to premier investment opportunities with insider-level execution</p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number" data-target="100">$0</span><span class="stat-suffix">M+</span>
+          <span class="stat-label">Assets Under Management</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="25">0</span><span class="stat-suffix">+</span>
+          <span class="stat-label">Years Licensed</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="98">0</span><span class="stat-suffix">%</span>
+          <span class="stat-label">Client Retention</span>
+        </div>
+    </div>
+  </section>
+
+
+  <section class="divisions-section scroll-fade-section">
+    <div class="divisions-container">
+    <div class="division-card">
+        <img src="https://static.vecteezy.com/system/resources/previews/025/500/843/large_2x/financial-chart-on-dark-background-represent-financial-data-analysis-and-analysis-financial-graphs-glowing-lines-and-diagrams-on-digital-screen-ai-generated-free-photo.jpg" alt="Capital Markets" class="card-img-top">
+        <div class="card-body">
+          <h2>Capital Markets</h2>
+          <p>Premium access to IPOs, secondary offerings, and structured equity transactions through our established networks.</p>
+          <div class="division-highlights">
+            <div class="highlight-item"><span class="highlight-number">200+</span><span class="highlight-label">Deals Executed</span></div>
+            <div class="highlight-item"><span class="highlight-number">$25B+</span><span class="highlight-label">Transaction Volume</span></div>
+          </div>
+        </div>
+        <div class="division-overlay">
+          <div class="overlay-content">
+            <h3>MCMA</h3>
+            <p>Unlike traditional prime brokerage funds, MCM provides true insider access to high-demand equity opportunities.</p>
+            <div class="overlay-highlights">
+              <div class="overlay-highlight-item"><h4>Private Placements</h4><p>Streamlined execution through institutional networks</p></div>
+              <div class="overlay-highlight-item"><h4>Initial Public Offerings</h4><p>Preferential IPO allocations in oversubscribed offerings</p></div>
+              <div class="overlay-highlight-item"><h4>Secondaries</h4><p>Discrete, high-touch execution for secondaries and blocks</p></div>
+              <div class="overlay-highlight-item"><h4>Block Trades</h4><p>Volume with discreet execution and optimal results</p></div>
+            </div>
+            <div class="overlay-clients">
+              <span class="overlay-client-badge">Founded in 2012</span>
+              <span class="overlay-client-badge">Senior Bankers with 25+ Years of Experience</span>
+              <span class="overlay-client-badge">Presence in HK, China, Singapore, India, Mexico</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="division-card">
+        <img src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/io1WouQsgZLA/v1/-1x-1.webp" alt="Asset Management" class="card-img-top">
+        <div class="card-body">
+          <h2>Asset & Wealth Management</h2>
+          <p>Find tailored solutions navigating complex public and private markets as well as partner with LP's focused on technolgy and commodities</p>
+          <div class="division-highlights">
+            <div class="highlight-item"><span class="highlight-number">12.5%</span><span class="highlight-label">Net IRR</span></div>
+            <div class="highlight-item"><span class="highlight-number">$800M+</span><span class="highlight-label">Credit Deployed</span></div>
+          </div>
+        </div>
+        <div class="division-overlay">
+          <div class="overlay-content">
+            <h3>MCMIP</h3>
+            <p>Unique access to specialized opportunities through proprietary deal flow and deep industry expertise.</p>
+            <div class="overlay-highlights">
+              <div class="overlay-highlight-item"><h4>Commodity Credit Fund</h4><p>Flagship fund lending to global commodity markets</p></div>
+              <div class="overlay-highlight-item"><h4>Wealth Management</h4><p>Managing your wealth with insight, integrity, and impact</p></div>
+              <div class="overlay-highlight-item"><h4>Renassiance Technologies</h4><p>The inside track to quantitative investing at its pinnacle</p></div>
+              <div class="overlay-highlight-item"><h4>Arrowpoint</h4><p>Precision-driven capital, powering long-term growth.</p></div>
+            </div>
+            <div class="overlay-clients">
+              <span class="overlay-client-badge">$750M+ Total Transaction Volume</span>
+              <span class="overlay-client-badge">2000+ Local Investor Relationships</span>
+              <span class="overlay-client-badge">500+ Roadshow Meetings in Last 12 Months</span>
+              <span class="overlay-client-badge">20+ Professionals</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  ---
+  <section class="solutions-section-wrapper scroll-fade-section">
+  <div class="solutions-section-wrapper">
+    <h2 class="solutions-title">Our Solutions</h2>
+    <div class="solutions-grid">
+
+      <div class="solution-card">
+        <img src="https://www.shutterstock.com/image-photo/glowing-digital-lock-surrounded-by-600nw-2517566697.jpg" alt="Private Placements">
+        <div class="solution-content-static">
+          <h3>Private Placements</h3>
+        </div>
+        <div class="solution-content-wrapper">
+          <p>Streamlined execution for private placement deals through our expansive institutional networks.</p>
+          <a href="private_placements.html" class="solution-more-info">Learn More</a>
+        </div>
+      </div>
+
+      <div class="solution-card">
+        <img src="https://cdn.i-scmp.com/sites/default/files/styles/1020x680/public/d8/images/canvas/2025/05/20/fa28fb6b-0183-48ec-b564-ce79c3bd8f80_f3c4c75d.jpg?itok=DV25l5pQ&v=1747708447" alt="IPOs">
+        <div class="solution-content-static">
+          <h3>IPOs</h3>
+        </div>
+        <div class="solution-content-wrapper">
+          <p>Gain preferential access and allocations in highly sought-after initial public offerings.</p>
+          <a href="ipos.html" class="solution-more-info">Learn More</a>
+        </div>
+      </div>
+
+      <div class="solution-card">
+        <img src="https://www.barings.com/globalassets/2-assets/perspectives/viewpoints/insights/2024/10-october/surge-of-secondaries-hero.jpg" alt="Secondaries">
+        <div class="solution-content-static">
+          <h3>Secondaries</h3>
+        </div>
+        <div class="solution-content-wrapper">
+          <p>Facilitating discrete and efficient secondary transactions for private and public market assets.</p>
+          <a href="secondaries.html" class="solution-more-info">Learn More</a>
+        </div>
+      </div>
+
+      <div class="solution-card">
+        <img src="https://thumbs.dreamstime.com/b/glowing-forex-chart-city-background-night-candlestick-line-finance-trade-invest-concept-double-exposure-143537882.jpg" alt="Block Trades">
+        <div class="solution-content-static">
+          <h3>Block Trades</h3>
+        </div>
+        <div class="solution-content-wrapper">
+          <p>The art of large-scale trading: where precision and discrecion meet impact.</p>
+          <a href="block_trades.html" class="solution-more-info">Learn More</a>
+        </div>
+      </div>
+
+      <div class="solution-card">
+        <img src="https://investmentu.com/wp-content/uploads/2020/01/types-of-investment-funds.jpg" alt="Funds">
+        <div class="solution-content-static">
+          <h3>Funds</h3>
+        </div>
+        <div class="solution-content-wrapper">
+          <p>Access our meticulously managed funds offering diversified strategies and superior returns across various asset classes.</p>
+          <a href="funds.html" class="solution-more-info">Learn More</a>
+        </div>
+      </div>
+  
+      <div class="solution-card">
+        <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wealth Management">
+        <div class="solution-content-static">
+          <h3>Wealth Management</h3>
+        </div>
+        <div class="solution-content-wrapper">
+          <p>Bespoke wealth management strategies designed to preserve and grow your assets for the long term.</p>
+          <a href="wealth_management.html" class="solution-more-info">Learn More</a>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+</div>
+
+<section class="funds-section-wrapper scroll-fade-section">
+  <h2 class="funds-title">Our Funds</h2>
+  
+    <!-- Fund Cards Grid -->
+    <section class="funds-section">
+      <div class="funds-grid">
+        <div class="fund-box">
+          <img src="https://live.staticflickr.com/5647/22307565878_0e3e4fb765_b.jpg" alt="Commodity Credit Fund" />
+          <div class="fund-overlay">
+            <h3>Commodity Credit Fund</h3>
+            <p>Our flagship credit fund, focusing on robust returns from diversified commodity-backed debt instruments.</p>
+            <a href="ccf.html" class="learn-more-btn">Learn More</a>
+          </div>
+        </div>
+    
+        <div class="fund-box">
+          <img src="https://a.storyblok.com/f/182663/2688x1512/5d8ce12f4b/rentec-renaissance-technologies-and-the-medallion-fund.png/m/3840x0/filters:quality(100)" alt="Renaissance Technologies" />
+          <div class="fund-overlay">
+            <h3>Renaissance Technologies</h3>
+            <p>Access to cutting-edge quantitative strategies employed by one of the most successful hedge funds in history.</p>
+            <a href="exclusive_funds.html" class="learn-more-btn">Learn More</a>
+          </div>
+        </div>
+    
+        <div class="fund-box">
+          <div style="background-color: white;">
+          <img src="https://framerusercontent.com/assets/HjPhCJ3EUjsL3o7PabEGtIM7Uw.png" alt="Arrowpoint" />
+        </div>
+          <div class="fund-overlay">
+            <h3>Arrowpoint Growth Fund</h3>
+            <p>Invest in high-growth potential companies across various sectors, driven by meticulous research and strategic capital deployment.</p>
+            <a href="exclusive_funds.html" class="learn-more-btn">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+  
+  ---
+  <section class="deals-section scroll-fade-section">
+    <h2 class="deals-title">Featured Deals</h2>
+    <div class="deals-grid">
+      <!-- DJI Deal -->
+      <div class="deal-box">
+        <img src="https://altitude.ph/cdn/shop/collections/AD_Store_Revamp_DJI-28_2000x.jpg?v=1748665032" alt="DJI Deal" />
+        <div class="deal-overlay">
+          <h3>DJI Secondary</h3>
+          <p>$40M stake in DJI at a discount to internal valuation, enabling strategic entry into China's drone sector.</p>
+        </div>
+      </div>
+  
+      <!-- Palantir Deal -->
+      <div class="deal-box">
+        <img src="https://assets.entrepreneur.com/providers/marketbeat/hero-image-marketbeat-488522.jpeg" alt="Palantir Deal" />
+        <div class="deal-overlay">
+          <h3>Palantir Early Liquidity</h3>
+          <p>$25M secondary transaction pre-direct listing; sourced from ex-employees seeking early monetization.</p>
+        </div>
+      </div>
+  
+      <!-- SpaceX Deal -->
+      <div class="deal-box">
+        <img src="https://applescoop.org/image/wallpapers/ipad/spacex-logo-black-mars-28-09-2024-1727540580-hd-wallpaper.jpg" alt="SpaceX Deal" />
+        <div class="deal-overlay">
+          <h3>SpaceX Block Trade</h3>
+          <p>$80M position acquired from early VC backers ahead of Starlink expansion; limited access tranche.</p>
+        </div>
+      </div>
+  
+      <!-- Xiaomi Deal -->
+      <div class="deal-box">
+        <img src="https://technode.com/wp-content/uploads/2023/08/Xiaomi-logo-on-its-office.png" alt="Xiaomi Deal" />
+        <div class="deal-overlay">
+          <h3>Xiaomi Founder Liquidity</h3>
+          <p>$30M negotiated secondary from founder’s trust, pre-lockup expiration following IPO.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+
+
+  ---
+
+  <section class="team-section scroll-fade-section">
+    <h2 class="team-title">Meet Our Team</h2>
+    <div class="team-grid">
+      
+      <!-- Daniel Rose Card -->
+      <div class="team-card">
+        <img src="https://media.licdn.com/dms/image/v2/D5603AQFfbW9qS03PLQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1685927434421?e=1756339200&v=beta&t=RZzwNf1pjRQgfZU9Srcdgk_IWc7rdkv0LH-5cPJhDSk" class="clickable-photo" onclick="openBioModal('bioModalRose')" />
+        <div class="team-info">
+          <h3>Daniel Rose</h3>
+          <p class="role">Chief Executive Officer</p>
+          <p>Dan Rose is the Group CEO of MCM Partners, leading the firm’s global strategy and expansion, with a focus on cross-border transactions and natural resources.</p>
+        </div>
+      </div>
+
+      <div id="bioModalRose" class="modal">
+        <div class="modal-content wide-bio-modal">
+          <span class="close-button" onclick="closeModal()">&times;</span>
+          <img src="https://media.licdn.com/dms/image/v2/D5603AQFfbW9qS03PLQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1685927434421?e=1756339200&v=beta&t=RZzwNf1pjRQgfZU9Srcdgk_IWc7rdkv0LH-5cPJhDSk" alt="Daniel Rose" class="bio-modal-photo" style="width: 120px; height: auto;">
+          <h2>Daniel Rose</h2>
+          <p><strong>Chief Executive Officer</strong></p>
+          <p>Prior to joining MCM, Daniel was CEO and Board Director of VTB Capital Hong Kong (VTBC), overseeing an SFC regulated Investment Banking platform focused on natural resources activities across Global Markets, Structured & Corporate Finance, M&A and Asset Management. In addition to his role as CEO, Daniel led the bank’s Asian Commodities business which actively traded physical metals, energy, bulks, agri and provided bespoke financing, equity, credit and derivative solutions to clients across Asia-Pac. Daniel has spent 20 years in the commodity markets and investment banking working for Societe Generale, Goldman Sachs and Morgan Stanley (prior to VTBC) in Sydney, London, Hong Kong and Singapore.  Daniel holds a Bachelor of Law (Honors) and Bachelor of Commerce from Bond University in Australia and serves as a non-executive director of ASX listed Pivotal Metals (ASX : PVT).</p>
+          <a href="https://www.linkedin.com/in/dan-rose-89994810/" target="_blank" class="linkedin-button">LinkedIn</a>
+        </div>
+      </div>
+  
+      <!-- Adrian Valenzuela Card -->
+      <div class="team-card">
+        <img src="https://hkacademy.edu.hk/wp-content/uploads/2020/10/hka-boardchair-1920.jpg" class="clickable-photo" onclick="openBioModal('bioModalValenzuela')" />
+        <div class="team-info">
+          <h3>Adrian Valenzuela</h3>
+          <p class="role">President & Founder</p>
+          <p>With a career spanning over two decades in finance, Adrian has cultivated a reputation for delivering exclusive investment opportunities and driving performance-driven results for a diverse client base.</p>
+        </div>
+      </div>
+
+      <div id="bioModalValenzuela" class="modal">
+        <div class="modal-content wide-bio-modal">
+          <span class="close-button" onclick="closeModal()">&times;</span>
+          <img src="https://hkacademy.edu.hk/wp-content/uploads/2020/10/hka-boardchair-1920.jpg" alt="Adrian Valenzuela"  class="bio-modal-photo" style="width: 120px; height: auto;">
+          <h2>Adrian Valenzuela</h2>
+          <p><strong>Former Managing Director and Co-Head of Global Equities Distribution, JP Morgan.</strong></p>
+          <p>Adrian Valenzuela is Co-Founder and CEO of MCM Partners. He relocated to Hong Kong in early 2011 and joined Barclays Capital as a Managing Director and Head of Distribution for Equity Liquid Markets across the Asia Pacific Region. He played a central role in the firm’s expansion, participating in the hiring of circa 200 staff recruited across sales, trading and research. He was a member of the Global Equities Management Committee, Asia Sales Management Committee, and Asian Equities Executive and Management Committees.</p>
+          <p>He previously worked for JP Morgan from early 2007 and had several promotions during his time, latterly co-heading the global distribution across cash equities and equity derivatives for the equity division. He was part of the Global Equities Executive Committee, Equity Derivatives Global Management Committee and the Global Cash Equity Management Committee. He managed a sales force of over 500 sales professionals across the globe, delivering sales, trading and advisory to global institutional investors and corporations across equity products.</p>
+          <p>Between 2006 and 2007, Adrian ran the Alpha Strategies Group for Merrill Lynch International, working on advisory projects for various institutional investors across asset classes, and coordinating the strategic marketing campaigns across the equity division.</p>
+          <p>In 2005, he was a Founding Partner and Head of Marketing and Product Development for Wealth Management Group (WMG), an alternative asset management firm. He worked extensively in new fund development and capital-raising for various funds.</p>
+          <p>Previously, Adrian worked at Lehman Brothers International as Head of Pan-European Flow Derivatives Sales, including the coverage of global hedge funds for European derivative markets. He also worked at Morgan Stanley New York from 1998 until 2002 as Head of Equity Derivative Sales for Latin America and in the derivatives sales team for US hedge funds. In early 2002, he transferred to London as a senior salesperson for the European Hedge Fund Sales Desk for equity derivatives, also heading the sales teams for Southern Europe and France.</p>
+          <p>Adrian holds a BA in Economics from the Instituto Tecnologico Autonomo de Mexico, as well as various other certificates and degrees, including graduating from the Stanford University Senior Leadership Program. He began his career in emerging markets, trading fixed income securities for Santander from 1991 through 1994, later moving to ING Barings as part of their equities, equity strategy and equity derivatives teams.</p>
+          <a href="https://www.linkedin.com/in/adrian-valenzuela-b4415931//" target="_blank" class="linkedin-button">LinkedIn</a>
+        </div>
+      </div>
+
+      <!-- Vivian Liu Card -->
+      <div class="team-card">
+        <img src="https://media.licdn.com/dms/image/v2/D5603AQEeKy17wYCHBg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1680155652419?e=1756339200&v=beta&t=QdPYJgSiyjucxH117PGSe_cQ-zQ26ii-bpoABwDmFwo" class="clickable-photo" onclick="openBioModal('bioModalLiu')" />
+        <div class="team-info">
+            <h3>Vivian Liu</h3>
+            <p class="role">Partner & Group COO</p>
+        <p>Vivian brings a wealth of experience in strategic operations and cross-border investment management. She plays a pivotal role in driving MCM's operational excellence and organizational growth.</p>
+        </div>
+      </div>
+  
+      <div id="bioModalLiu" class="modal">
+        <div class="modal-content wide-bio-modal">
+        <span class="close-button" onclick="closeBioModal('bioModalLiu')">&times;</span>
+        <img src="https://media.licdn.com/dms/image/v2/D5603AQEeKy17wYCHBg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1680155652419?e=1756339200&v=beta&t=QdPYJgSiyjucxH117PGSe_cQ-zQ26ii-bpoABwDmFwo" alt="Vivian Liu" class="bio-modal-photo" style="width: 120px; height: auto;">
+        <h2>Vivian Liu </h2>
+        <p><strong>Partner and Group Chief Operating Officer at MCM Partners</strong></p>
+        <p>Vivian Liu oversees all operational aspects of MCM’s global platform, ensuring alignment between the firm’s strategic objectives and its day-to-day execution. With over a decade of experience in financial services, Vivian has led complex organizational transformations and implemented scalable infrastructure across diverse international markets.</p>
+        <p>Prior to joining MCM Partners, Vivian held senior operational roles at multinational asset management firms, where she was instrumental in streamlining operations, enhancing governance, and driving digital transformation initiatives. Her expertise lies in navigating the intersection of technology, compliance, and operational efficiency.</p>
+        <p>Vivian holds a dual degree in Finance and International Relations from the University of British Columbia. She is a strong advocate for female leadership in finance and actively mentors emerging professionals across the region.</p>
+        <a href="https://www.linkedin.com/in/vivian-liu" target="_blank" class="linkedin-button">LinkedIn</a>
+        </div>
+    </div>
+
+</div>
+
+  
+  
+</section>
+
+
+  <section class="insights-section scroll-fade-section">
+    <h2 class="insights-title">Latest Insights</h2>
+    <div class="insights-grid">
+      <div class="insight-card">
+        <img src="https://images.pexels.com/photos/4065618/pexels-photo-4065618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Global Economic Outlook 2025">
+        <div class="insight-content">
+          <div class="insight-meta">Market Analysis | June 15, 2025</div>
+          <h5>The Global Economic Outlook for H2 2025: Navigating Uncertainty</h5>
+          <p>A detailed analysis of macroeconomic trends, inflation outlook, and potential policy shifts impacting global markets.</p>
+        </div>
+      </div>
+      <div class="insight-card">
+        <img src="https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Private Credit Opportunities">
+        <div class="insight-content">
+          <div class="insight-meta">Private Credit | June 10, 2025</div>
+          <h5>Unlocking Value: Emerging Opportunities in Private Credit Markets</h5>
+          <p>Exploring overlooked niches and innovative structures in private credit that offer attractive returns for investors.</p>
+        </div>
+      </div>
+      <div class="insight-card">
+        <img src="https://images.pexels.com/photos/4065876/pexels-photo-4065876.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="IPO Market Trends">
+        <div class="insight-content">
+          <div class="insight-meta">Capital Markets | June 05, 2025</div>
+          <h5>IPO Market Trends: What to Expect in the Coming Quarters</h5>
+          <p>Insights into the current state of the initial public offering market, including sector-specific activity and investor sentiment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-row">
+  
+        <!-- Contact Information -->
+        <div class="footer-contact">
+          <div class="contact-item">
+            <h4>Address</h4>
+            <p>Henley Building, Suite 701, 7/F,</p>
+            <p>5 Queen's Road Central, Central<br>Hong Kong SAR</p>
+          </div>
+          <div class="contact-item">
+            <h4>Email</h4>
+            <p>info@mcmpartners.com</p>
+          </div>
+          <div class="contact-item">
+            <h4>Phone</h4>
+            <p>+852 2210 0888</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-row">
+
+              <!-- Footer Navigation Bar -->
+              <nav class="footer-nav">
+                <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="about.html">About</a></li>
+                  <li><a href="capital-markets.html">Capital Markets</a></li>
+                  <li><a href="asset_management.html">Asset Management</a></li>
+                  <li><a href="wealth.html">Wealth</a></li>
+                  <li><a href="insights.html">Insights</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                </ul>
+              </nav>
+            </div>
+      <div class="footer-row">
+      <div class="footer-bottom">
+        &copy; 2025 MCM Partners. All rights reserved.
+      </div>
+    </div>
+    </div>
+  </footer>
+  
+  
+
+  <div id="commodityFundModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <img src="https://live.staticflickr.com/5647/22307565878_0e3e4fb765_b.jpg" alt="Commodity Credit Fund">
+      <h3>Commodity Credit Fund</h3>
+      <p>The Commodity Credit Fund is MCM Partners' flagship offering in the private credit space. It is designed to provide investors with robust, consistent returns derived from a diversified portfolio of debt instruments collateralized by physical commodities and commodity-related assets.</p>
+      <p>Our strategy involves meticulous due diligence and a deep understanding of global commodity markets, allowing us to identify and capitalize on unique, off-market opportunities. The fund prioritizes capital preservation while targeting an attractive net internal rate of return (IRR) through a disciplined investment approach.</p>
+      <ul>
+        <li><i class="fas fa-chart-line"></i> Target Net IRR: 12.5% - 15.0% annually, historically consistent.</li>
+        <li><i class="fas fa-handshake"></i> Diversified Portfolio: Exposure across energy, metals, and agricultural commodities, minimizing concentration risk.</li>
+        <li><i class="fas fa-shield-alt"></i> Robust Collateral: All debt instruments are secured by tangible, liquid commodity assets.</li>
+        <li><i class="fas fa-user-tie"></i> Experienced Management: Managed by a team with decades of experience in commodity finance and alternative investments.</li>
+        <li><i class="fas fa-file-invoice-dollar"></i> Liquidity & Redemption: Structured to offer quarterly redemptions with appropriate notice periods.</li>
+      </ul>
+      <p>This fund is suitable for qualified investors seeking uncorrelated returns and a strategic allocation to the commodity sector.</p>
+    </div>
+  </div>
+
+  <div id="renaissanceTechModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <img src="https://a.storyblok.com/f/182663/2688x1512/5d8ce12f4b/rentec-renaissance-technologies-and-the-medallion-fund.png/m/3840x0/filters:quality(100)" alt="Renaissance Technologies">
+      <h3>Renaissance Technologies Fund Access</h3>
+      <p>MCM Partners offers exclusive, limited access to investment strategies inspired by or directly linked to the methodologies of world-renowned quantitative hedge funds, including insights derived from Renaissance Technologies. This is a unique opportunity for sophisticated investors to participate in strategies that typically generate exceptional, non-correlated returns.</p>
+      <p>Our access pathway is designed for qualified purchasers seeking exposure to highly complex, algorithmic trading models that capitalize on subtle market inefficiencies across global financial markets. This fund is ideal for investors looking for diversification away from traditional equity and bond markets.</p>
+      <ul>
+        <li><i class="fas fa-cogs"></i> Advanced Algorithms: Strategies based on complex mathematical models and machine learning.</li>
+        <li><i class="fas fa-tachometer-alt"></i> High-Frequency Trading: Capitalizing on fleeting opportunities in high-liquidity markets.</li>
+        <li><i class="fas fa-lock"></i> Proprietary Insights: Access to research and strategies typically unavailable to the general public.</li>
+        <li><i class="fas fa-globe"></i> Global Market Coverage: Trading across equities, futures, options, and currencies worldwide.</li>
+        <li><i class="fas fa-chart-line"></i> Historical Outperformance: Strategies known for their exceptional long-term track record.</li>
+      </ul>
+      <p>Investment in this fund is highly selective and requires a deep understanding of quantitative finance. Contact us to learn more about eligibility criteria.</p>
+    </div>
+  </div>
+
+  <div id="arrowpointModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <img src="https://framerusercontent.com/assets/HjPhCJ3EUjsL3o7PabEGtIM7Uw.png" alt="Arrowpoint Growth Fund">
+      <h3>Arrowpoint Investment Partners</h3>
+      <p>The Arrowpoint Growth Fund is designed for investors seeking significant capital appreciation through investments in high-growth potential companies. Our disciplined approach focuses on identifying innovative businesses with strong management teams, disruptive technologies, or significant market expansion opportunities across various sectors.</p>
+      <p>We perform exhaustive due diligence, proprietary market analysis, and engage directly with company leadership to ensure our investments are in line with long-term growth trends. The fund aims to deliver superior risk-adjusted returns by selectively deploying capital in dynamic and underserved markets.</p>
+      <ul>
+        <li><i class="fas fa-seedling"></i> High-Growth Focus: Targeting companies poised for substantial expansion and market disruption.</li>
+        <li><i class="fas fa-lightbulb"></i> Innovation-Driven: Investing in businesses with cutting-edge technologies and business models.</li>
+        <li><i class="fas fa-users"></i> Strong Leadership: Partnering with companies led by visionary and experienced management teams.</li>
+        <li><i class="fas fa-chart-pie"></i> Diversified Sector Exposure: Strategic investments across technology, healthcare, consumer goods, and more.</li>
+        <li><i class="fas fa-hand-holding-usd"></i> Active Management: Proactive involvement and support for portfolio companies to accelerate growth.</li>
+      </ul>
+      <p>This fund is suitable for long-term investors comfortable with the growth equity risk profile and seeking to capture significant upside potential.</p>
+    </div>
+  </div>
+
+  <div id="wealthManagementModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <img src="https://images.pexels.com/photos/7568601/pexels-photo-7568601.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Bespoke Wealth Management">
+      <h3>Bespoke Wealth Management</h3>
+      <p>MCM Partners offers highly personalized and comprehensive wealth management services designed to meet the complex financial needs of high-net-worth individuals, families, and family offices. Our approach goes beyond traditional investment management, encompassing a holistic view of your financial life.</p>
+      <p>We work closely with you to understand your specific goals, risk tolerance, and legacy aspirations. Our team of expert advisors then crafts a bespoke financial plan, integrating investment strategies, estate planning, tax optimization, and philanthropic advisory, all delivered with the utmost discretion and integrity.</p>
+      <ul>
+        <li><i class="fas fa-user-circle"></i> Personalized Strategy: Tailored investment portfolios and financial plans aligned with your unique objectives.</li>
+        <li><i class="fas fa-balance-scale"></i> Holistic Planning: Integration of wealth accumulation, preservation, and transfer strategies.</li>
+        <li><i class="fas fa-gavel"></i> Estate & Legacy Planning: Expert guidance to ensure your wealth is transitioned effectively across generations.</li>
+        <li><i class="fas fa-calculator"></i> Tax Efficiency: Strategies designed to minimize tax liabilities and maximize after-tax returns.</li>
+        <li><i class="fas fa-hand-holding-heart"></i> Philanthropic Advisory: Support in structuring charitable giving to achieve your philanthropic goals.</li>
+      </ul>
+      <p>Experience the difference of a dedicated partnership focused on the long-term stewardship of your wealth.</p>
+    </div>
+  </div>
+
+  <div id="fundsSolutionModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <img src="https://investmentu.com/wp-content/uploads/2020/01/types-of-investment-funds.jpg" alt="Our Funds Solution">
+      <h3>Our Funds</h3>
+      <p>MCM Partners offers a diverse suite of proprietary funds, meticulously structured to provide investors with exposure to unique market segments and generate superior, risk-adjusted returns. Our fund offerings span various asset classes and investment strategies, catering to different risk appetites and financial objectives.</p>
+      <p>From private credit to quantitative strategies, each fund is managed by experienced professionals employing rigorous due diligence and active management to maximize performance and mitigate risk. We provide detailed transparency and regular reporting to keep our investors informed.</p>
+      <ul>
+        <li><i class="fas fa-chart-line"></i> Diversified Strategies: Funds across private credit, alternative investments, and growth equity.</li>
+        <li><i class="fas fa-medal"></i> Performance-Driven: Designed to deliver consistent, strong returns.</li>
+        <li><i class="fas fa-user-tie"></i> Expert Management: Managed by seasoned portfolio managers with deep market insights.</li>
+        <li><i class="fas fa-layer-group"></i> Tailored Exposure: Offers targeted access to specific market opportunities.</li>
+        <li><i class="fas fa-shield-alt"></i> Robust Risk Management: Integrated risk frameworks to protect capital.</li>
+      </ul>
+      <p>Explore our full range of funds to find the right investment vehicle for your portfolio.</p>
+    </div>
+  </div>
+
+  <div id="secondariesSolutionModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <img src="https://www.barings.com/globalassets/2-assets/perspectives/viewpoints/insights/2024/10-october/surge-of-secondaries-hero.jpg" alt="Secondaries Solution">
+      <h3>Secondaries</h3>
+      <p>MCM Partners provides specialized services for secondary transactions, enabling efficient liquidity solutions for existing private and public market holdings. Whether you are looking to monetize illiquid assets or acquire stakes in established companies, our global network and expertise ensure discreet and streamlined execution.</p>
+      <p>We work with institutional investors, family offices, and UHNW individuals to facilitate the buying and selling of private fund interests, direct company stakes, and large blocks of public securities outside of traditional exchanges. Our process emphasizes confidentiality, fair valuation, and timely completion.</p>
+      <ul>
+        <li><i class="fas fa-exchange-alt"></i> Liquidity Solutions: Efficient divestment of illiquid or complex assets.</li>
+        <li><i class="fas fa-lock"></i> Discreet Execution: Confidential handling of sensitive transactions.</li>
+        <li><i class="fas fa-network-wired"></i> Global Network: Access to a wide pool of buyers and sellers worldwide.</li>
+        <li><i class="fas fa-handshake"></i> Fair Valuation: Expert assessment to ensure optimal pricing.</li>
+        <li><i class="fas fa-chart-area"></i> Diverse Asset Classes: Handling fund interests, direct stakes, and large block trades.</li>
+      </ul>
+      <p>Contact us to discuss your secondary market needs and how we can assist you.</p>
+    </div>
+  </div>
+
+  <div id="iposSolutionModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <img src="https://cdn.i-scmp.com/sites/default/files/styles/1020x680/public/d8/images/canvas/2025/05/20/fa28fb6b-0183-48ec-b564-ce79c3bd8f80_f3c4c75d.jpg?itok=DV25l5pQ&v=1747708447" alt="IPOs Solution">
+      <h3>Initial Public Offerings (IPOs)</h3>
+      <p>MCM Partners offers discerning investors preferential access and allocations in highly anticipated and often oversubscribed Initial Public Offerings (IPOs). Leveraging our deep-seated relationships with leading investment banks and underwriting syndicates, we provide a distinct advantage in accessing new public market opportunities.</p>
+      <p>Our expertise covers the entire IPO landscape, from identifying promising companies to navigating the allocation process. We ensure our clients are positioned to capitalize on significant growth potential from companies transitioning to public markets.</p>
+      <ul>
+        <li><i class="fas fa-star"></i> Preferential Allocations: Access to a portion of the most sought-after IPOs.</li>
+        <li><i class="fas fa-link"></i> Strong Underwriter Relationships: Direct access through our extensive network of investment banks.</li>
+        <li><i class="fas fa-binoculars"></i> Early Opportunity Identification: Proactive sourcing of upcoming high-potential IPOs.</li>
+        <li><i class="fas fa-dollar-sign"></i> Growth Capital Exposure: Investing in companies at the exciting cusp of their public market journey.</li>
+        <li><i class="fas fa-chart-bar"></i> Market Intelligence: Providing insights into IPO market trends and valuations.</li>
+      </ul>
+      <p>Position your portfolio for future growth with exclusive IPO access through MCM Partners.</p>
+    </div>
+  </div>
+
+  <div id="privatePlacementsSolutionModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <img src="https://thumbs.dreamstime.com/b/glowing-forex-chart-city-background-night-candlestick-line-finance-trade-invest-concept-double-exposure-143537882.jpg" alt="Private Placements Solution">
+      <h3>Private Placements</h3>
+      <p>MCM Partners specializes in the streamlined execution of private placement deals, connecting companies seeking capital with a curated network of institutional investors, family offices, and qualified purchasers. Our extensive relationships and deep market intelligence ensure efficient and successful capital raises.</p>
+      <p>We advise both issuers and investors on structured private placements, including equity, debt, and convertible securities. Our end-to-end service covers deal structuring, investor matching, due diligence coordination, and negotiation support, ensuring optimal terms for all parties.</p>
+      <ul>
+        <li><i class="fas fa-hand-holding-usd"></i> Efficient Capital Raising: Connecting issuers with the right investors quickly.</li>
+        <li><i class="fas fa-network-wired"></i> Vast Investor Network: Access to a broad base of qualified private investors.</li>
+        <li><i class="fas fa-gavel"></i> Expert Deal Structuring: Tailoring placements to meet specific company and investor needs.</li>
+        <li><i class="fas fa-lightbulb"></i> Strategic Advisory: Guidance throughout the entire private placement process.</li>
+        <li><i class="fas fa-check-circle"></i> Seamless Execution: From term sheet to closing, ensuring a smooth transaction.</li>
+      </ul>
+      <p>Leverage MCM Partners' expertise for your next private capital transaction.</p>
+    </div>
+  </div>
+
+  <div id="retainedMandatesSolutionModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <img src="https://media-cldnry.s-nbcnews.com/image/upload/newscms/2020_14/1554952/hank-shake-continue-today-main-200403.jpg" alt="Retained Mandates Solution">
+      <h3>Retained Mandates</h3>
+      <p>MCM Partners offers comprehensive advisory services under retained mandates, providing our clients with dedicated, hands-on support across the entire lifecycle of complex financial transactions. This bespoke service ensures continuous access to our senior team's expertise, strategic insights, and extensive network.</p>
+      <p>Whether it's M&A advisory, capital restructuring, strategic partnerships, or long-term financial planning, our retained mandate approach guarantees a committed partnership focused on achieving your specific, high-priority objectives with discretion and precision.</p>
+      <ul>
+        <li><i class="fas fa-users-cog"></i> Dedicated Senior Team: Direct access to experienced advisors for ongoing support.</li>
+        <li><i class="fas fa-calendar-check"></i> Long-Term Partnership: Committed engagement for sustained strategic guidance.</li>
+        <li><i class="fas fa-project-diagram"></i> End-to-End Advisory: Support across all phases of complex transactions.</li>
+        <li><i class="fas fa-chart-line"></i> Strategic Growth Initiatives: Expert guidance on expansion, restructuring, and market entry.</li>
+        <li><i class="fas fa-trophy"></i> Outcome-Oriented: Focused on delivering measurable results aligned with client goals.</li>
+      </ul>
+      <p>Secure a strategic advantage with a retained mandate from MCM Partners.</p>
+    </div>
+  </div>
+
+  <div id="wealthManagementSolutionModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <img src="https://t3.ftcdn.net/jpg/12/47/65/74/360_F_1247657474_AChExzUjhbVFuBvkmAz7tqIVgxoYurVf.jpg" alt="Wealth Management Solution">
+      <h3>Wealth Management</h3>
+      <p>MCM Partners provides sophisticated and personalized wealth management solutions designed to help individuals, families, and organizations preserve, grow, and transfer their assets effectively. Our holistic approach considers your entire financial landscape, from investment strategies to estate planning and philanthropic endeavors.</p>
+      <p>We work diligently to understand your unique aspirations and risk tolerance, constructing diversified portfolios and comprehensive financial plans that align with your long-term objectives. Our commitment is to provide transparent, unbiased advice and meticulous execution, ensuring your financial legacy thrives.</p>
+      <ul>
+        <li><i class="fas fa-hand-holding-usd"></i> Personalized Financial Planning: Tailored strategies for wealth accumulation, preservation, and distribution.</li>
+        <li><i class="fas fa-chart-pie"></i> Diversified Investment Portfolios: Strategic allocation across various asset classes to optimize risk and return.</li>
+        <li><i class="fas fa-gavel"></i> Estate Planning & Succession: Expert guidance for seamless intergenerational wealth transfer.</li>
+        <li><i class="fas fa-calculator"></i> Tax-Efficient Strategies: Proactive solutions to minimize tax liabilities and maximize net returns.</li>
+        <li><i class="fas fa-user-circle"></i> Dedicated Client Service: A personal advisor committed to your financial well-being.</li>
+      </ul>
+      <p>Let MCM Partners be your trusted partner in navigating the complexities of wealth management.</p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Get all modal trigger elements (the cards themselves)
+      const fundCards = document.querySelectorAll('.fund-card');
+      const dealbox = document.querySelectorAll('deal-box');
+      const solutionCards = document.querySelectorAll('.solution-card');
+      const modals = document.querySelectorAll('.modal');
+      const closeButtons = document.querySelectorAll('.close-button');
+
+      // Function to open a specific modal
+      function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+          modal.style.display = 'flex'; // Use flex to center content
+          document.body.style.overflow = 'hidden'; // Prevent scrolling of background
+        }
+      }
+
+      // Function to close all modals
+      function closeModals() {
+        modals.forEach(modal => {
+          modal.style.display = 'none';
+        });
+        document.body.style.overflow = ''; // Restore scrolling
+      }
+
+      // Add click event listeners to Fund cards
+      fundCards.forEach(card => {
+        card.addEventListener('click', (event) => {
+          // Check if the click was directly on the card or on its "Learn More" button
+          if (event.target.closest('.fund-card')) {
+            const modalId = card.dataset.modalTarget;
+            openModal(modalId);
+          }
+        });
+      });
+
+      // Add click event listeners to Solution cards
+      solutionCards.forEach(card => {
+        card.addEventListener('click', (event) => {
+          // Check if the click was directly on the card or on its "Learn More" button
+          if (event.target.closest('.solution-card')) {
+            const modalId = card.dataset.modalTarget;
+            openModal(modalId);
+          }
+        });
+      });
+
+
+      // Add click event listeners to close buttons
+      closeButtons.forEach(button => {
+        button.addEventListener('click', closeModals);
+      });
+
+      // Close modal when clicking outside the modal content
+      modals.forEach(modal => {
+        modal.addEventListener('click', (event) => {
+          if (event.target === modal) { // Check if the click was directly on the modal overlay
+            closeModals();
+          }
+        });
+      });
+
+      // Close modal when pressing the Escape key
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closeModals();
+        }
+      });
+    });
+
+    function openModal() {
+      const modal = document.getElementById("bioModal");
+      if (modal) {
+        modal.style.display = "block";
+      }
+    }
+  
+    function closeModal() {
+      const modal = document.getElementById("bioModal");
+      if (modal) {
+        modal.style.display = "none";
+      }
+    }
+  
+    // Optional: Close modal if clicked outside modal content
+    window.addEventListener('click', function (event) {
+      const modal = document.getElementById("bioModal");
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+  
+    // Optional: Close on ESC key
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    });
+
+    function openBioModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) modal.style.display = 'flex';
+    }
+  
+    function closeBioModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) modal.style.display = 'none';
+    }
+  
+    window.addEventListener('click', function (event) {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        if (event.target === modal) modal.style.display = 'none';
+      });
+    });
+  
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => modal.style.display = 'none');
+      }
+    });
+  </script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const titles = document.querySelectorAll('.solutions-title, .funds-title, .deals-title');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    titles.forEach(title => {
+      observer.observe(title);
+    });
+  });
+</script>
+
+<script>
+  const fundCards = document.querySelectorAll('.fund-card, .deal-box');
+
+  const animateOnScroll = () => {
+    fundCards.forEach(card => {
+      const cardTop = card.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+
+      if (cardTop < windowHeight - 100) {
+        card.classList.add('animate');
+      }
+    });
+  };
+
+  window.addEventListener('scroll', animateOnScroll);
+  window.addEventListener('load', animateOnScroll);
+</script>
+
+<script>
+  const aboutSection = document.querySelector('.about-content');
+
+  const animateAboutOnScroll = () => {
+    const sectionTop = aboutSection.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (sectionTop < windowHeight - 100) {
+      aboutSection.classList.add('animate');
+    }
+  };
+
+  window.addEventListener('scroll', animateAboutOnScroll);
+  window.addEventListener('load', animateAboutOnScroll);
+</script>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const afterElement = document.querySelector('body::after');
+        const bodyElement = document.body;
+
+        const scrollTintOverlay = document.createElement('div');
+        scrollTintOverlay.classList.add('scroll-tint-overlay');
+        document.body.prepend(scrollTintOverlay); // Add it as the first child of body
+
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.scrollY;
+
+            const startDarkeningScroll = 0;
+            const endDarkeningScroll = 1000;
+
+            let scrollPercentage = (scrollTop - startDarkeningScroll) / (endDarkeningScroll - startDarkeningScroll);
+            scrollPercentage = Math.max(0, Math.min(1, scrollPercentage));
+
+            const initialOpacity = 0.2;
+            const maxOpacity = 0.7; // ✅ <---- Add or change this line here
+
+            const currentOpacity = initialOpacity + (scrollPercentage * (maxOpacity - initialOpacity));
+            scrollTintOverlay.style.backgroundColor = `rgba(10, 41, 71, ${currentOpacity})`;
+        });
+    });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const divisionCards = document.querySelectorAll('.division-card');
+
+        const observerOptions = {
+            root: null, // observe against the viewport
+            rootMargin: '0px',
+            threshold: 0.2 // Trigger when 20% of the item is visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Stop observing once it's visible, unless you want it to fade out again
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        divisionCards.forEach((card, index) => {
+            // Apply a staggered delay to each card
+            card.style.transitionDelay = `${index * 0.2}s`; // 0s, 0.2s, 0.4s, etc.
+            observer.observe(card);
+        });
+    });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const solutionCards = document.querySelectorAll('.solution-card');
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.2
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    solutionCards.forEach((card, index) => {
+      card.style.transitionDelay = `${index * 0.2}s`;
+      observer.observe(card);
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('.scroll-fade-section');
+  
+    const observerOptions = {
+      root: null,
+      threshold: 0.1
+    };
+  
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in');
+        } else {
+          entry.target.classList.remove('fade-in');
+        }
+      });
+    }, observerOptions);
+  
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  });
+  </script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const counters = document.querySelectorAll('.stat-number');
+  
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const suffix = counter.nextElementSibling && counter.nextElementSibling.classList.contains('stat-suffix') ? counter.nextElementSibling.textContent : '';
+        let count = 0;
+        const duration = 2000; // animation duration in ms
+        const stepTime = Math.abs(Math.floor(duration / target));
+  
+        function updateCount() {
+          count += Math.ceil(target / (duration / stepTime));
+          if (count > target) count = target;
+  
+          // Format number with commas if large
+          let displayCount = count;
+          if (target >= 1000) {
+            displayCount = count.toLocaleString();
+          }
+  
+          counter.textContent = displayCount;
+  
+          if (count < target) {
+            setTimeout(updateCount, stepTime);
+          } else {
+            // Add suffix back after counting finishes
+            if (suffix) {
+              counter.textContent = displayCount + suffix;
+              // Optionally hide suffix span since it's now appended
+              if (counter.nextElementSibling.classList.contains('stat-suffix')) {
+                counter.nextElementSibling.style.display = 'none';
+              }
+            }
+          }
+        }
+  
+        updateCount();
+      });
+    });
+  </script>
+  
+
+  
+</body>
+</html>
